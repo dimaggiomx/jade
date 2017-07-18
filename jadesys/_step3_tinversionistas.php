@@ -4,7 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 require_once("global.config.php");
 require_once("config.php"); // para BD
 //require_once('sescheck.php'); // para la sesion
-
+// este seria un cambio que voy a liberar en PRODUCCION via el control del proyecto.
 require_once(C_P_CLASES.'utils/string.functions.php');
 $STR = new STRFN();
 
