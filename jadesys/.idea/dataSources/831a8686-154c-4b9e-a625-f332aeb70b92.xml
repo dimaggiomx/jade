@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - enzomx_jadecbd@127.0.0.1">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="enzomx_jadecbd">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="enzomx_bkdb"/>
+    <schema id="3" name="enzomx_proyectadb"/>
+    <schema id="4" name="gsolu_dbcentro"/>
+    <schema id="5" name="guiandb"/>
+    <schema id="6" name="image_ajax"/>
+    <schema id="7" name="inaya"/>
+    <schema id="8" name="information_schema"/>
+    <schema id="9" name="jadebd"/>
+    <schema id="10" name="livingco_dbliving"/>
+    <schema id="11" name="mysql"/>
+    <schema id="12" name="performance_schema"/>
+    <table id="13" parent="1" name="tblusers">
+      <comment>Tabla de usuarios del sistema</comment>
+    </table>
+    <table id="14" parent="1" name="tempresas"/>
+    <table id="15" parent="1" name="tinversionistas"/>
+    <table id="16" parent="1" name="tproyectos"/>
+    <table id="17" parent="1" name="talertas"/>
+    <table id="18" parent="1" name="tmensajes"/>
+    <column id="19" parent="13" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(8) unsigned zerofill|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="20" parent="13" name="usuario">
+      <mandatory>1</mandatory>
+      <data-type>varchar(80)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="21" parent="13" name="password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="22" parent="13" name="privilegio">
+      <comment>B=inversionista, C=empresas</comment>
+      <mandatory>1</mandatory>
+      <data-type>enum(&apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;)|0</data-type>
+      <default-expression>&apos;B&apos;</default-expression>
+    </column>
+    <column id="23" parent="13" name="estatus">
+      <comment>estatus:1=activo, 0=inactivo, 2=esperando confirmacion</comment>
+      <mandatory>1</mandatory>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="24" parent="13" name="regDate">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+    </column>
+    <column id="25" parent="13" name="nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(150)|0</data-type>
+    </column>
+    <column id="26" parent="13" name="guid">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <key id="27" parent="13" name="PRIMARY">
+      <columns>id
+usuario</columns>
+      <primary>1</primary>
+    </key>
+    <column id="28" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="29" parent="14" name="iduser">
+      <comment>id de la tabla de usuarios (correo e)</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="30" parent="14" name="gnombre">
+      <comment>nombre o razon social</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="31" parent="14" name="gresponsablelegal">
+      <comment>responsable legal</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="32" parent="14" name="odireccion">
+      <comment>direccion calle y numero</comment>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="33" parent="14" name="ocolonia">
+      <comment>colonia</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="34" parent="14" name="ociudad">
+      <comment>ciudad</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="35" parent="14" name="oestado">
+      <comment>estado</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="36" parent="14" name="opais">
+      <comment>pais</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="37" parent="14" name="otelofc">
+      <comment>telefono de oficina</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="38" parent="14" name="otelmovil">
+      <comment>telefono movil</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="39" parent="14" name="ogiro">
+      <comment>giro de la empresa</comment>
+      <data-type>varchar(180)|0</data-type>
+    </column>
+    <column id="40" parent="14" name="oproducto">
+      <comment>producto o servicio</comment>
+      <data-type>varchar(180)|0</data-type>
+    </column>
+    <column id="41" parent="14" name="oprodfabricacion">
+      <comment>si producto fabricacion</comment>
+      <data-type>enum(&apos;SI&apos;, &apos;NO&apos;)|0</data-type>
+    </column>
+    <column id="42" parent="14" name="oprodcomercializacion">
+      <comment>si producto comercializacion</comment>
+      <data-type>enum(&apos;SI&apos;, &apos;NO&apos;)|0</data-type>
+    </column>
+    <column id="43" parent="14" name="oactividades">
+      <comment>parrafo descripcion de actividades</comment>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="44" parent="14" name="ofechaconstitucion">
+      <comment>Fecha de constitucion</comment>
+      <data-type>date|0</data-type>
+    </column>
+    <column id="45" parent="14" name="regdate">
+      <comment>fecha de registro</comment>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="46" parent="14" name="fventasnetas">
+      <comment>ventas netas</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="47" parent="14" name="futilidadneta">
+      <comment>utilidad neta</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="48" parent="14" name="futilidadventa">
+      <comment>utilidd/venta neta</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="49" parent="14" name="fcapitaltrabajo">
+      <comment>capital de trabajo</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="50" parent="14" name="findiceliquidez">
+      <comment>indice de liquidez</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="51" parent="14" name="fcostoventas">
+      <comment>costo de ventas</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="52" parent="14" name="futilidadbruta">
+      <comment>utilidad bruta</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="53" parent="14" name="fdepreciacion">
+      <comment>depreciacion</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="54" parent="14" name="fgastosadmin">
+      <comment>gastos de administracion</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="55" parent="14" name="fgastosventa">
+      <comment>gastos de venta</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="56" parent="14" name="fgastosoperacion">
+      <comment>gastos de operacion</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="57" parent="14" name="futilidadoperacion">
+      <comment>utilidad de operacion</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="58" parent="14" name="futilidadnetafinal">
+      <comment>utilidad neta final</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="59" parent="14" name="fventasdirectas">
+      <comment>porcentaje de ventas directas al exterior</comment>
+      <data-type>decimal(15,2)|0</data-type>
+    </column>
+    <column id="60" parent="14" name="estatus">
+      <comment>estatus del registro</comment>
+      <data-type>smallint(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="61" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="62" parent="15" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="63" parent="15" name="iduser">
+      <comment>id de la tabla de usuarios (correo e)</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="64" parent="15" name="gnombre">
+      <comment>nombre o razon social</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="65" parent="15" name="gresponsablelegal">
+      <comment>responsable legal</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="66" parent="15" name="odireccion">
+      <comment>direccion calle y numero</comment>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="67" parent="15" name="ocolonia">
+      <comment>colonia</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="68" parent="15" name="ociudad">
+      <comment>ciudad</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="69" parent="15" name="oestado">
+      <comment>estado</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="70" parent="15" name="opais">
+      <comment>pais</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="71" parent="15" name="otelofc">
+      <comment>telefono de oficina</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="72" parent="15" name="ogiro">
+      <comment>giro de la empresa</comment>
+      <data-type>varchar(180)|0</data-type>
+    </column>
+    <column id="73" parent="15" name="orubrosinteres">
+      <comment>rubros de interes</comment>
+      <data-type>enum(&apos;SI&apos;, &apos;NO&apos;)|0</data-type>
+    </column>
+    <column id="74" parent="15" name="crfc">
+      <comment>rfc con homoclave</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="75" parent="15" name="regdate">
+      <comment>fecha de registro</comment>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="76" parent="15" name="cocupacion">
+      <comment>ocupacion</comment>
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="77" parent="15" name="cnacionalidad">
+      <comment>nacionalidad</comment>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="78" parent="15" name="ccurp">
+      <comment>CURP</comment>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="79" parent="15" name="cdireccionparticular">
+      <comment>direccion calle y numero particular</comment>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="80" parent="15" name="cciudad">
+      <comment>delegacion-municipio-ciudad</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="81" parent="15" name="ccp">
+      <comment>codigo postal</comment>
+      <data-type>varchar(6)|0</data-type>
+    </column>
+    <column id="82" parent="15" name="ctelcasa">
+      <comment>telefono de casa</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="83" parent="15" name="cmovil">
+      <comment>telefono movil</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="84" parent="15" name="cestadocivil">
+      <comment>estado civil</comment>
+      <data-type>enum(&apos;SOLTERO&apos;, &apos;CASADO&apos;, &apos;UNION LIBRE&apos;, &apos;DIVORCIADO&apos;, &apos;VIUDO&apos;)|0</data-type>
+    </column>
+    <column id="85" parent="15" name="cnombreconyugue">
+      <comment>nombre del conyugue</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="86" parent="15" name="ccurpconyugue">
+      <comment>CURP del conyugue</comment>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="87" parent="15" name="cregimen">
+      <comment>regimen bajo el que se contrajo matrimonio</comment>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="88" parent="15" name="crfcconyugue">
+      <comment>rfc con homoclave del conyugue</comment>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="89" parent="15" name="clugarnacimientoconyugue">
+      <comment>lugar de nacimiento del conyugue</comment>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="90" parent="15" name="cdomicilioconyugue">
+      <comment>domicilio del conyugue</comment>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="91" parent="15" name="estatus">
+      <comment>estatus de el registro</comment>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="92" parent="15" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="93" parent="16" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="94" parent="16" name="nombre">
+      <comment>nombre del proyecto</comment>
+      <data-type>varchar(64)|0</data-type>
+    </column>
+    <column id="95" parent="16" name="actividadeconomica">
+      <comment>actividad economica</comment>
+      <data-type>varchar(500)|0</data-type>
+    </column>
+    <column id="96" parent="16" name="descripciongeneral">
+      <comment>descripcion general</comment>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="97" parent="16" name="estatus">
+      <comment>estatus del proyeto</comment>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="98" parent="16" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="99" parent="17" name="id">
+      <comment>USER=Usuario, INV0Inversionista, EMP=Empresa, PROY=proyecto, SYS=sistema, SUB=subasta</comment>
+      <mandatory>1</mandatory>
+      <data-type>enum(&apos;USER&apos;, &apos;INV&apos;, &apos;EMP&apos;, &apos;PROY&apos;, &apos;SYS&apos;, &apos;MERCA&apos;)|0</data-type>
+      <default-expression>&apos;SYS&apos;</default-expression>
+    </column>
+    <column id="100" parent="17" name="descripcion">
+      <comment>descripcion del tipo de mensaje</comment>
+      <data-type>varchar(70)|0</data-type>
+    </column>
+    <column id="101" parent="17" name="estatus">
+      <comment>0 = inactivo, 1 = activo</comment>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="102" parent="17" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="103" parent="18" name="id">
+      <comment>id</comment>
+      <mandatory>1</mandatory>
+      <data-type>int(11) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="104" parent="18" name="idalerta">
+      <comment>tipo de alerta</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="105" parent="18" name="iduser">
+      <comment>usuario que genero el mensaje</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="106" parent="18" name="mensaje">
+      <comment>contenido del mensaje</comment>
+      <data-type>varchar(75)|0</data-type>
+    </column>
+    <column id="107" parent="18" name="regdate">
+      <comment>fecha de registro</comment>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="108" parent="18" name="estatus">
+      <comment>1 = activo, 0 = inactivo</comment>
+      <data-type>tinyint(1)|0</data-type>
+    </column>
+    <key id="109" parent="18" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

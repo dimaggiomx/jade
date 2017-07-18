@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - enzomx_proyectadb@127.0.0.1">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="enzomx_proyectadb">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="enzomx_bkdb"/>
+    <schema id="3" name="enzomx_jadecbd"/>
+    <schema id="4" name="gsolu_dbcentro"/>
+    <schema id="5" name="guiandb"/>
+    <schema id="6" name="image_ajax"/>
+    <schema id="7" name="inaya"/>
+    <schema id="8" name="information_schema"/>
+    <schema id="9" name="jadebd"/>
+    <schema id="10" name="livingco_dbliving"/>
+    <schema id="11" name="mysql"/>
+    <schema id="12" name="performance_schema"/>
+    <table id="13" parent="1" name="tblusers">
+      <comment>Tabla de usuarios del sistema</comment>
+    </table>
+    <table id="14" parent="1" name="tbodas"/>
+    <table id="15" parent="1" name="testados"/>
+    <table id="16" parent="1" name="texpositor"/>
+    <table id="17" parent="1" name="tgalerias"/>
+    <table id="18" parent="1" name="tgenerales"/>
+    <table id="19" parent="1" name="txvs"/>
+    <column id="20" parent="13" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(8) unsigned zerofill|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="21" parent="13" name="usuario">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="22" parent="13" name="password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="23" parent="13" name="privilegio">
+      <mandatory>1</mandatory>
+      <data-type>enum(&apos;SuperAdmin&apos;, &apos;Admin&apos;, &apos;PowerUser&apos;, &apos;BasicUser&apos;)|0</data-type>
+    </column>
+    <column id="24" parent="13" name="estatus">
+      <mandatory>1</mandatory>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="25" parent="13" name="regDate">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+      <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+    </column>
+    <column id="26" parent="13" name="nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(150)|0</data-type>
+    </column>
+    <key id="27" parent="13" name="PRIMARY">
+      <columns>id
+usuario</columns>
+      <primary>1</primary>
+    </key>
+    <column id="28" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(4)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="29" parent="14" name="nombreNovia">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="30" parent="14" name="nombreNovio">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="31" parent="14" name="telefono1">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="32" parent="14" name="correo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="33" parent="14" name="ciudadBoda">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="34" parent="14" name="iglesiaBoda">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="35" parent="14" name="fechaBoda">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="36" parent="14" name="tw">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="37" parent="14" name="fb">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="38" parent="14" name="comentarios">
+      <mandatory>1</mandatory>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="39" parent="14" name="estatus">
+      <mandatory>1</mandatory>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="40" parent="14" name="telefono2">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+      <default-expression>&apos;&apos;</default-expression>
+    </column>
+    <column id="41" parent="14" name="regDate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <key id="42" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="43" parent="15" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="44" parent="15" name="estado">
+      <comment>Tabla para los estados</comment>
+      <mandatory>1</mandatory>
+      <data-type>varchar(60)|0</data-type>
+    </column>
+    <key id="45" parent="15" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="46" parent="16" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(4)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="47" parent="16" name="empresa">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="48" parent="16" name="giro">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="49" parent="16" name="telefono">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="50" parent="16" name="correo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="51" parent="16" name="ciudad">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="52" parent="16" name="propietario">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="53" parent="16" name="fecha">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="54" parent="16" name="tw">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="55" parent="16" name="fb">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="56" parent="16" name="comentarios">
+      <mandatory>1</mandatory>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="57" parent="16" name="estatus">
+      <mandatory>1</mandatory>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="58" parent="16" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="59" parent="17" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="60" parent="17" name="id_table">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="61" parent="17" name="nombre_table">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="62" parent="17" name="original_image">
+      <mandatory>1</mandatory>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="63" parent="17" name="thumbnail_image">
+      <mandatory>1</mandatory>
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="64" parent="17" name="ip_address">
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <key id="65" parent="17" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="66" parent="18" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(4)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="67" parent="18" name="razonSocial">
+      <mandatory>1</mandatory>
+      <data-type>varchar(70)|0</data-type>
+    </column>
+    <column id="68" parent="18" name="rfc">
+      <mandatory>1</mandatory>
+      <data-type>varchar(13)|0</data-type>
+    </column>
+    <column id="69" parent="18" name="direccionFiscal">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="70" parent="18" name="url">
+      <mandatory>1</mandatory>
+      <data-type>varchar(80)|0</data-type>
+    </column>
+    <column id="71" parent="18" name="correo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(80)|0</data-type>
+    </column>
+    <column id="72" parent="18" name="telefono">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="73" parent="18" name="logo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="74" parent="18" name="firmaCorreo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="75" parent="18" name="color">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <key id="76" parent="18" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="77" parent="19" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(4)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="78" parent="19" name="nombrePapas">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="79" parent="19" name="nombreQuinceanera">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="80" parent="19" name="telefono">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="81" parent="19" name="correo">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="82" parent="19" name="ciudad">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="83" parent="19" name="lugar">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="84" parent="19" name="fecha">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="85" parent="19" name="tw">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="86" parent="19" name="fb">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="87" parent="19" name="comentarios">
+      <mandatory>1</mandatory>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="88" parent="19" name="estatus">
+      <mandatory>1</mandatory>
+      <data-type>smallint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="89" parent="19" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

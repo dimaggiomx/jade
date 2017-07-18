@@ -1,0 +1,262 @@
+<?
+header("Content-Type: text/html;charset=utf-8");
+/* Class name: TABLAS
+* Description: realiza funciones de las empresas del sistema
+* Busqueda, Insercion, Actualizacion, Activar/desactivar usuario
+*/
+class A_TABLENAMES
+{
+    var $tblusers=array(); # contains field names
+    var $tempresas=array(); # contains field names
+    var $tinversionistas=array(); # contains field names
+    var $tproyectos=array(); # contains field names
+    var $tmensajes=array(); # contains field names
+    var $tmsgtype=array(); # contains field names
+    var $tnotify=array(); # contains field names
+    var $tsubastas=array(); # contains field names
+    var $tinv_giro=array(); # contains field names
+
+    /* Constructor: User passes in the name of the script where
+    * form data is to be sent ($processor) and the value to show
+    * on the submit button.
+    */
+    function __construct($arrData=array())
+    {
+        //$this->data = $arrData;
+
+        $arrTblusers=array();
+        $arrTempresas=array();
+        $arrTinversionistas=array();
+        $arrTproyectos=array();
+        $arrTmensajes=array();
+        $arrTmsgtype=array();
+        $arrTnotify=array();
+        $arrTsubastas=array();
+        $arrTinv_giro=array();
+
+        //inicializa nombres de tablas
+        $this->tblusers = $arrTblusers;
+        $this->tempresas = $arrTempresas;
+        $this->tinversionistas = $arrTinversionistas;
+        $this->tproyectos = $arrTproyectos;
+        $this->tmensajes = $arrTmensajes;
+        $this->tmsgtype = $arrTmsgtype;
+        $this->tnotify = $arrTnotify;
+        $this->tsubastas = $arrTsubastas;
+        $this->tinv_giro=$arrTinv_giro;
+
+
+    }
+
+    /**
+     * Almacena los datos de la tabla tempresas
+     */
+    function set_dataTempresas()
+    {
+        $this->tempresas['data1'] = 'iduser';
+        $this->tempresas['data2'] = 'gnombre';
+        $this->tempresas['data3'] = 'gresponsablelegal';
+        $this->tempresas['data4'] = 'odireccion';
+        $this->tempresas['data5'] = 'ocolonia';
+        $this->tempresas['data6'] = 'ociudad';
+        $this->tempresas['data7'] = 'oestado';
+        $this->tempresas['data8'] = 'opais';
+        $this->tempresas['data9'] = 'otelofc';
+        $this->tempresas['data10'] = 'otelmovil';
+        $this->tempresas['data11'] = 'ogiro';
+        $this->tempresas['data12'] = 'oproducto';
+        $this->tempresas['data13'] = 'oprodfabricacion';
+        $this->tempresas['data14'] = 'oprodcomercializacion';
+        $this->tempresas['data15'] = 'oactividades';
+        $this->tempresas['data16'] = 'ofechaconstitucion';
+
+        $this->tempresas['data17'] = 'regdate';
+
+        $this->tempresas['data18'] = 'fventasneta';
+        $this->tempresas['data19'] = 'futilidadneta';
+        $this->tempresas['data20'] = 'futilidadventa';
+        $this->tempresas['data21'] = 'fcapitaltrabajo';
+        $this->tempresas['data22'] = 'findiceliquidez';
+        $this->tempresas['data23'] = 'fcostoventas';
+        $this->tempresas['data24'] = 'futilidadbruta';
+        $this->tempresas['data25'] = 'fdepreciacion';
+
+        $this->tempresas['data26'] = 'fgastosoperacion';
+        $this->tempresas['data27'] = 'futilidadoperacion';
+        $this->tempresas['data28'] = 'futilidadnetafinal';
+        $this->tempresas['data29'] = 'fventasdirectas';
+        $this->tempresas['data30'] = 'ranking';
+        $this->tempresas['data31'] = 'eval';
+    }
+
+    /**
+     * Almacena los datos de la tabla tinversionistas
+     */
+    function set_dataTinversionistas()
+    {
+        $this->tinversionistas['data1'] = 'iduser';
+        $this->tinversionistas['data2'] = 'gnombre';
+        $this->tinversionistas['data3'] = 'gresponsablelegal';
+        $this->tinversionistas['data4'] = 'odireccion';
+        $this->tinversionistas['data5'] = 'ocolonia';
+        $this->tinversionistas['data6'] = 'ociudad';
+        $this->tinversionistas['data7'] = 'oestado';
+        $this->tinversionistas['data8'] = 'opais';
+        $this->tinversionistas['data9'] = 'otelofc';
+        $this->tinversionistas['data10'] = 'ogiro';
+
+        $this->tinversionistas['data11'] = 'crfc';
+        $this->tinversionistas['data12'] = 'cocupacion';
+        $this->tinversionistas['data13'] = 'cnacionalidad';
+        $this->tinversionistas['data14'] = 'ccurp';
+        $this->tinversionistas['data15'] = 'cdireccionparticular';
+        $this->tinversionistas['data16'] = 'cciudad';
+        $this->tinversionistas['data17'] = 'ccp';
+        $this->tinversionistas['data18'] = 'ctelcasa';
+        $this->tinversionistas['data19'] = 'cmovil';
+        $this->tinversionistas['data20'] = 'cestadocivil';
+        $this->tinversionistas['data21'] = 'cnombreconyugue';
+        $this->tinversionistas['data22'] = 'ccurpconyugue';
+        $this->tinversionistas['data23'] = 'cregimen';
+        $this->tinversionistas['data24'] = 'crfcconyugue';
+        $this->tinversionistas['data25'] = 'clugarnacimientoconyugue';
+        $this->tinversionistas['data26'] = 'cdomicilioconyugue';
+        $this->tinversionistas['data27'] = 'ranking';
+        $this->tinversionistas['data28'] = 'regdate';
+
+    }
+
+    /**
+     * Almacena los datos de la tabla tinversionistas
+     */
+    function set_dataTproyectos()
+    {
+        $this->tproyectos['data1'] = 'idEmpresa';
+        $this->tproyectos['data2'] = 'nombre';
+        $this->tproyectos['data3'] = 'actividadEconomica';
+        $this->tproyectos['data4'] = 'descripcionGeneral';
+        $this->tproyectos['data5'] = 'video';
+        $this->tproyectos['data6'] = 'regDate';
+        $this->tproyectos['data7'] = 'monto';
+    }
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTblusers()
+    {
+        $this->tblusers['data1'] = 'usuario';
+        $this->tblusers['data2'] = 'password';
+        $this->tblusers['data3'] = 'privilegio';
+        $this->tblusers['data4'] = 'estatus';
+        $this->tblusers['data5'] = 'regDate';
+        $this->tblusers['data6'] = 'nombre';
+        $this->tblusers['data7'] = 'guid';
+    }
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTmensajes()
+    {
+        $this->tmensajes['data1'] = 'iduser';
+        $this->tmensajes['data2'] = 'title';
+        $this->tmensajes['data3'] = 'mensaje';
+        $this->tmensajes['data4'] = 'regDate';
+        $this->tmensajes['data5'] = 'estatus';
+    }
+
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTmsgtype()
+    {
+        $this->tmsgtype['data1'] = 'id';
+        $this->tmsgtype['data2'] = 'tipo';
+        $this->tmsgtype['data3'] = 'msg';
+        $this->tmsgtype['data4'] = 'estatus';
+    }
+
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTnotify()
+    {
+        $this->tnotify['data1'] = 'idmsgtype';
+        $this->tnotify['data2'] = 'regDate';
+        $this->tnotify['data3'] = 'link';
+        $this->tnotify['data4'] = 'estatus';
+    }
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTsubastas()
+    {
+        $this->tsubastas['data1'] = 'idProyecto';
+        $this->tsubastas['data2'] = 'fechaInicio';
+        $this->tsubastas['data3'] = 'fechaFin';
+        $this->tsubastas['data4'] = 'tipo';
+        $this->tsubastas['data5'] = 'estatus';
+    }
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTinv_giro()
+    {
+        $this->tinv_giro['data1'] = 'idinv';
+        $this->tinv_giro['data2'] = 'idgiro';
+    }
+
+
+    function get_tempresas()
+    {
+        return $this->tempresas;
+    }
+
+    function get_tinversionistas()
+    {
+        return $this->tinversionistas;
+    }
+
+    function get_tproyectos()
+    {
+        return $this->tproyectos;
+    }
+
+    function get_tblusers()
+    {
+        return $this->tblusers;
+    }
+
+    function get_tmensajes()
+    {
+        return $this->tmensajes;
+    }
+
+
+    function get_tmsgtype()
+    {
+        return $this->tmsgtype;
+    }
+
+    function get_tnotify()
+    {
+        return $this->tnotify;
+    }
+
+    function get_tsubastas()
+    {
+        return $this->tsubastas;
+    }
+
+    function get_tinv_giro()
+    {
+        return $this->tinv_giro;
+    }
+
+}
+?>
