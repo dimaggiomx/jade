@@ -4,7 +4,7 @@ session_start();
 header("Content-Type: text/html;charset=utf-8");
 require_once("global.config.php");
 require_once("config.php");
-//require_once('../sescheck.php'); // para la sesion
+require_once('../sescheck.php'); // para la sesion
 
 ?>
 <!DOCTYPE html>
