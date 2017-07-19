@@ -33,6 +33,7 @@
     line-height:1.2em;
     font-size:17px;
     line-height:20px;
+     /*background-color: red !important;*/
 }
 a {
     color:#181A1C;
@@ -106,16 +107,32 @@ p {
     margin-right:5px;
     padding-left:25px;
     padding-right:25px;
-    border: 1px solid #FFF;
+   /* border: 1px solid #FFF; */
+    border-left: 2px solid #0B694B;
+    vertical-align: middle;
+    padding-top: 40%;
+    height: 40px;
 }
 .nav-pills > li > a:hover, .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
-    background: #181A1C;
-    color: #fff;
+
+    background: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-right:5px;
+    padding-left:25px;
+    padding-right:25px;
+    color: #000;
+    text-decoration: underline;
+    vertical-align: middle;
+    padding-top: 40%;
+    height: 40px;
 }
 .navbar .btn-navbar:hover, .navbar .btn-navbar {
     border-radius:0;
     background:#54A574;
     color: #000;
+
 }
 /******
 2. Layout
@@ -180,6 +197,19 @@ p {
     border-left: 585px outset transparent;
     border-right: 585px outset transparent;
     position: relative;
+
+ }
+
+.triangle2 {
+    margin: 0 auto;
+    text-align:center;
+    width: 0;
+    height: 0;
+    border-top: 30px solid #0B694B;
+    border-left: 585px outset transparent;
+    border-right: 585px outset transparent;
+    position: relative;
+
 }
 /*
 2.1 Animations
@@ -399,7 +429,9 @@ p {
     font-weight: lighter;
 }
 .primary-section {
-    background:#FFF;
+  /* background:#FFF;  */
+    background: #FFF url(../fondo.png) repeat center;
+/*    background: red;  */
 }
 .primary-section .triangle {
     border-top: 40px solid #D7E8D0;
@@ -414,7 +446,8 @@ p {
     color:#181A1C;
 }
 .secondary-section {
-    background:#D7E8D0;
+  /*  background:#D7E8D0; */
+    background: #FFF url(../fondo.png) repeat center;
 }
 .secondary-section .title {
     border-bottom: 1px solid #FFF;
@@ -752,8 +785,9 @@ p {
     color: #181A1C;
 }
 .contact-info {
-    margin-top:10px;
-    margin-bottom:10px;
+    width: 300px;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 .contact-info p{
      font-weight:normal;
@@ -837,7 +871,7 @@ p {
 3.8 Footer
 ********************************************************************/
  .footer {
-    background: #FFF;
+    background: #0B694B;
     text-align: center;
 }
 .footer > p {
