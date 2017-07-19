@@ -13,7 +13,7 @@
                         <p>Cuéntanos tu perfil de inversionista para ofrecerte las mejores alternativas. Te compartimos la base de proyectos mejor estructurada de la red.</p>
                         <a href="#" class="da-link button">Invertir</a>
                         <div class="da-img">
-                            <img src="images/Slider01.png" alt="image01" width="320">
+                            <!--img src="images/Slider01.png" alt="image01" width="320"-->
                         </div>
                     </div>
                     <!-- End first slide -->
@@ -21,10 +21,10 @@
                     <div class="da-slide">
                         <h2>Invierte Informado</h2>
                         <!--h4>Profile de la empresa</h4-->
-                        <p>Estructuramos proyectos para que elijas el que más se adapta a tu perfil de inversionista.</p>
+                        <p>Estructuramos proyectos para que elijas el que más se <br/>adapta a tu perfil de inversionista.</p>
                         <a href="#" class="da-link button">Invertir</a>
                         <div class="da-img">
-                            <img src="images/Slider02.png" width="320" alt="image02">
+                            <!--img src="images/Slider02.png" width="320" alt="image02"-->
                         </div>
                     </div>
                     <!-- End second slide -->

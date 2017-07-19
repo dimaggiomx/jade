@@ -202,16 +202,16 @@ if ($resultado = $mysqli->query($query)) {
         
         
         <!-- Portfolio section start -->
-        <div class="section secondary-section " id="portfolio">
-            <div class="triangle"></div>
+        <div class="section secondary-section" id="portfolio">
+            <div class="triangle2"></div>
             <div class="container">
                 <div class=" title">
                     <h1>Mercado</h1>
                     <p>Descubra todos los proyectos que se ofrecen, es una ¡inversión segura!</p>
                 </div>
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills" style="margin-left: 30%;">
                     <li class="filter" data-filter="all">
-                        <a href="#noAction">Todas</a>
+                        <a href="#noAction">TODAS</a>
                     </li>
                     <li class="filter" data-filter="web">
                         <a href="#noAction">CAPITAL</a>
@@ -237,92 +237,85 @@ if ($resultado = $mysqli->query($query)) {
         </div>
         <!-- Portfolio section end -->
 
-       
+
         <!-- Contact section start -->
         <div id="contact" class="contact">
             <div class="section secondary-section">
+                <div class="triangle2"></div>
                 <div class="container">
                     <div class="title">
                         <h1>Contacto</h1>
                         <p>Para dudas, aclaraciones, comentarios, puedes acercarte con nosotros por cualquiera de estos medios:.</p>
                         <p><?php echo $salida; ?></p>
                     </div>
-                </div>
-                <div class="map-wrapper">
-                    <div class="map-canvas" id="map-canvas" >
-                        <!--iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.4335710531013!2d-99.1767918489928!3d19.393663986842096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff718f4416e1%3A0x6e35698f0852629c!2sWorld+Trade+Center+Ciudad+de+M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1483119123151" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe-->
-                    </div>
-                    <div class="container">
-                        <div class="row-fluid">
-                            <div class="span5 contact-form centered">
-                                <h3>Comentarios</h3>
-                                <div id="successSend" class="alert alert-success invisible">
-                                    <strong>Excelente!</strong>Su mensaje ha sido enviado.</div>
-                                <div id="errorSend" class="alert alert-error invisible">Ups!, ocurrió un error.</div>
-                                <form id="contact-form" action="php/mail.php">
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <input class="span12" type="text" id="name" name="name" placeholder="* Su nombre..." />
-                                            <div class="error left-align" id="err-name">Ingrese su nombre.</div>
-                                        </div>
+
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <h3>Comentarios</h3>
+                            <div id="successSend" class="alert alert-success invisible">
+                                <strong>Excelente!</strong>Su mensaje ha sido enviado.</div>
+                            <div id="errorSend" class="alert alert-error invisible">Ups!, ocurrió un error.</div>
+                            <form id="contact-form" action="php/mail.php">
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input class="span12" type="text" id="name" name="name" placeholder="* Su nombre..." />
+                                        <div class="error left-align" id="err-name">Ingrese su nombre.</div>
                                     </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <input class="span12" type="email" name="email" id="email" placeholder="* Su email..." />
-                                            <div class="error left-align" id="err-email">Ingrese una dirección de email valido.</div>
-                                        </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input class="span12" type="email" name="email" id="email" placeholder="* Su email..." />
+                                        <div class="error left-align" id="err-email">Ingrese una dirección de email valido.</div>
                                     </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <textarea class="span12" name="comment" id="comment" placeholder="* Comentarios..."></textarea>
-                                            <div class="error left-align" id="err-comment">Ingrese sus comentarios.</div>
-                                        </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <textarea class="span12" name="comment" id="comment" placeholder="* Comentarios..."></textarea>
+                                        <div class="error left-align" id="err-comment">Ingrese sus comentarios.</div>
                                     </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <button id="send-mail" class="message-btn">Enviar mensaje</button>
-                                        </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button id="send-mail" class="message-btn">Enviar mensaje</button>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="span6">
+                            <div class="highlighted-box center">
+                                <p class="info-mail">angel.hernandez@jadecapitalflow.mx</p>
+                                <p class="info-mail">oliver.moreno@jadecapitalflow.mx</p>
+                                <p class="info-mail">arnoldo.gutierrez@jadecapitalflow.mx</p>
+                                <p class="info-mail">victor.trillo@jadecapitalflow.mx</p>
+                                <p class="info-mail">enzo.dimaggio@jadecapitalflow.mx</p>
+                                <!--p>+11 234 567 890</p>
+                                <p>+11 286 543 850</p-->
+                                <div class="title">
+                                    <ul class="social">
+                                        <li>
+                                            <a href="">
+                                                <span class="icon-facebook-circled"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="icon-twitter-circled"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="icon-linkedin-circled"></span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="span9 center contact-info">
-                        <!--p>123 Fifth Avenue, 12th,Belgrade,SRB 11000</p-->
-                        <p class="info-mail">angel.hernandez@jadecapitalflow.mx</p>
-                        <p class="info-mail">oliver.moreno@jadecapitalflow.mx</p>
-                        <p class="info-mail">arnoldo.gutierrez@jadecapitalflow.mx</p>
-                        <p class="info-mail">victor.trillo@jadecapitalflow.mx</p>
-                        <p class="info-mail">enzo.dimaggio@jadecapitalflow.mx</p>
-                        <!--p>+11 234 567 890</p>
-                        <p>+11 286 543 850</p-->
-                        <div class="title">
-                            <h3>Redes Sociales</h3>
-                        </div>
-                    </div>
-                    <div class="row-fluid centered">
-                        <ul class="social">
-                            <li>
-                                <a href="">
-                                    <span class="icon-facebook-circled"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="icon-twitter-circled"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="icon-linkedin-circled"></span>
-                                </a>
-                            </li>
 
-                        </ul>
-                    </div>
-                </div>
+
             </div>
         </div>
         <!-- Contact section edn -->

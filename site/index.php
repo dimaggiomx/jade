@@ -47,10 +47,8 @@ header("Pragma: no-cache");
                     <!-- Main navigation -->
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav" id="top-navigation">
-                            <li><a href="#about">Quienes Somos</a></li>
-                            <li><a href="#contact">Contacto</a></li>
                             <li><a href="../jadesys/register.html">Regístrate</a></li>
-                            <li class="active"><a href="../jadesys/login.html">Login</a></li>
+                            <li class="active"><a href="index_mid.php">Ingresar</a></li>
                         </ul>
                     </div>
                     <!-- End main navigation -->
@@ -58,154 +56,14 @@ header("Pragma: no-cache");
             </div>
         </div>
         <!-- Start home section -->
-        <div id="home">
+        <div id="home" style="height: 80%" align="center">
+            <img src="mainBg.png" align="center">
             <!-- Start cSlider -->
-            <div id="da-slider" class="da-slider">
-                <div class="triangle"></div>
-                <!-- mask elemet use for masking background image -->
-                <div class="mask"></div>
-                <!-- All slides centred in container element -->
-                <div class="container">
-                    <!-- Start first slide -->
-                    <div class="da-slide">
-                        <h2 class="fittext2">Quiero Invertir</h2>
-                        <h4>Te ofrecemos opciones de inversión <br/>factibles y confiables.</h4>
-                        <p>Estructuración de soluciones a la medida que permiten mayores rendimientos. Todas las empresas reciben asesoría para la estructuración de sus proyectos de inversión.</p>
-                        <a href="index2.php" class="da-link button">Invertir</a>
-                        <div class="da-img">
-                            <img src="images/option01.png" alt="image01" width="320">
-                        </div>
-                    </div>
-                    <!-- End first slide -->
-                    <!-- Start second slide -->
-                    <div class="da-slide">
-                        <h2>Busco Financiamiento</h2>
-                        <h4>Te ofrecemos soluciones a la medida para tus <br/>necesidades de financiamiento.</h4>
-                        <p>Date la oportunidad de crecer con nosotros y brindarte las soluciones a la medida de tus proyectos</p>
-                        <a href="index2.php?emp=1" class="da-link button">Buscar Financiamiento</a>
-                        <div class="da-img">
-                            <img src="images/option02.png" width="320" alt="image02">
-                        </div>
-                    </div>
-                    <!-- End second slide -->
 
-                    <!-- Start cSlide navigation arrows -->
-                    <div class="da-arrows">
-                        <span class="da-arrows-prev"></span>
-                        <span class="da-arrows-next"></span>
-                    </div>
-                    <!-- End cSlide navigation arrows -->
-                </div>
-            </div>
         </div>
         <!-- End home section -->
 
-        
-        
-        
 
-        <!-- About us section start -->
-        <div class="section primary-section" id="about">
-            <div class="triangle"></div>
-            <div class="container">
-                <div class="title">
-                    <h1>¿Quienes Somos?</h1>
-                </div>
-                <div class="about-text centered">
-                    <h3>Somos una empresa 100% mexicana Experta en asesoramiento financiero y estructuración de proyectos de inversión. Tenemos un amplio conocimiento del mercado bursátil y bancario.</h3>
-                    <!--p style="font-size:16px">Somos una empresa 100% mexicana Experta en asesoramiento financiero y estructuración de proyectos de inversión. Tenemos un amplio conocimiento del mercado bursátil y bancario.</p-->
-                </div>
-            </div>
-        </div>
-        <!-- Client section start -->
-        <!-- Contact section start -->
-        <div id="contact" class="contact">
-            <div class="section secondary-section">
-                <div class="container">
-                    <div class="title">
-                        <h1>Contacto</h1>
-                        <p>Para dudas, aclaraciones, comentarios, puedes acercarte con nosotros por cualquiera de estos medios:.</p>
-                        <p><?php echo $salida; ?></p>
-                    </div>
-                </div>
-                <div class="map-wrapper">
-                    <div class="map-canvas" id="map-canvas" >
-                    	<!--iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.4335710531013!2d-99.1767918489928!3d19.393663986842096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff718f4416e1%3A0x6e35698f0852629c!2sWorld+Trade+Center+Ciudad+de+M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1483119123151" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe-->
-                    </div>
-                    <div class="container">
-                        <div class="row-fluid">
-                            <div class="span5 contact-form centered">
-                                <h3>Comentarios</h3>
-                                <div id="successSend" class="alert alert-success invisible">
-                                    <strong>Excelente!</strong>Su mensaje ha sido enviado.</div>
-                                <div id="errorSend" class="alert alert-error invisible">Ups!, ocurrió un error.</div>
-                                <form id="contact-form" action="php/mail.php">
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <input class="span12" type="text" id="name" name="name" placeholder="* Su nombre..." />
-                                            <div class="error left-align" id="err-name">Ingrese su nombre.</div>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <input class="span12" type="email" name="email" id="email" placeholder="* Su email..." />
-                                            <div class="error left-align" id="err-email">Ingrese una dirección de email valido.</div>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <textarea class="span12" name="comment" id="comment" placeholder="* Comentarios..."></textarea>
-                                            <div class="error left-align" id="err-comment">Ingrese sus comentarios.</div>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <button id="send-mail" class="message-btn">Enviar mensaje</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="span9 center contact-info">
-                        <!--p>123 Fifth Avenue, 12th,Belgrade,SRB 11000</p-->
-                        <p class="info-mail">angel.hernandez@jadecapitalflow.mx</p>
-                        <p class="info-mail">oliver.moreno@jadecapitalflow.mx</p>
-                        <p class="info-mail">arnoldo.gutierrez@jadecapitalflow.mx</p>
-                        <p class="info-mail">victor.trillo@jadecapitalflow.mx</p>
-                        <p class="info-mail">enzo.dimaggio@jadecapitalflow.mx</p>
-                        <!--p>+11 234 567 890</p>
-                        <p>+11 286 543 850</p-->
-                        <div class="title">
-                            <h3>Redes Sociales</h3>
-                        </div>
-                    </div>
-                    <div class="row-fluid centered">
-                        <ul class="social">
-                            <li>
-                                <a href="">
-                                    <span class="icon-facebook-circled"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="icon-twitter-circled"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="icon-linkedin-circled"></span>
-                                </a>
-                            </li>
-                           
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contact section edn -->
         <!-- Footer section start -->
         <div class="footer">
             <p>&copy; 2017 Theme by <a href="http://www.enzomx.com">Jade Capital Flow</a></p>
@@ -218,21 +76,5 @@ header("Pragma: no-cache");
             </a>
         </div>
         <!-- ScrollUp button end -->
-        <!-- Include javascript -->
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.mixitup.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/modernizr.custom.js"></script>
-        <script type="text/javascript" src="js/jquery.bxslider.js"></script>
-        <script type="text/javascript" src="js/jquery.cslider.js"></script>
-        <script type="text/javascript" src="js/jquery.placeholder.js"></script>
-        <script type="text/javascript" src="js/jquery.inview.js"></script>
-        <!-- Load google maps api and call initializeMap function defined in app.js -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;callback=initializeMap"></script>
-        <!-- css3-mediaqueries.js for IE8 or older -->
-        <!--[if lt IE 9]>
-            <script src="js/respond.min.js"></script>
-        <![endif]-->
-        <script type="text/javascript" src="js/app.js"></script>
     </body>
 </html>
