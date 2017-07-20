@@ -43,7 +43,7 @@ if($_SESSION["ses_priv"] == 'B')  //Inversionista
             <li> <a href="market2.php">Market</a> </li>
             <?php if($_SESSION["ses_priv"] == 'C'){ ?>
             <li> <a href="step_project.php">Proyectos</a> </li>
-            <li> <a href="#">Subastas</a> </li>
+            <li> <a href="step_subastas.php">Subastas</a> </li>
             <?php } ?>
             <li> <a href="documents.php">Documentos</a> </li>
         </ul>
