@@ -165,7 +165,7 @@ INNER JOIN tsubastas AS C ON B.id = C.idProyecto';
                             <h4 class="modal-title" id="exampleModalLabel1">'.$row->nombre.'</h4>
                           </div>
                           <div class="modal-body">
-                            <iframe width="98%" height="315" src="'.$row->video.'" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="98%" height="315" src="https://www.youtube.com/embed/'.$row->video.'?list=RDEoaPhxNubL0?ecver=1" frameborder="0" allowfullscreen></iframe>
                             <h4>'.$row->gnombre.'</h4>
                             <p>'.$row->descripcionGeneral.'</p>
                             <div class="demo-tooltip">
