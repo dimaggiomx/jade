@@ -4,7 +4,7 @@ session_start();
 header("Content-Type: text/html;charset=utf-8");
 require_once("global.config.php");
 require_once("config.php");
-//require_once('../sescheck.php'); // para la sesion
+require_once('sescheck.php'); // para la sesion
 
 ?>
 <!DOCTYPE html>
@@ -39,6 +39,9 @@ require_once("config.php");
 <![endif]-->
 </head>
 <body class="fix-sidebar">
+<!-- json response will be here -->
+<div id="errorDiv" class="errorDiv" align="center"></div>
+<!-- json response will be here -->
 <!-- Preloader -->
 <div class="preloader">
   <div class="cssload-speeding-wheel"></div>
@@ -111,7 +114,7 @@ require_once("config.php");
                     En este proceso de registro las empresas describen el uso que darán a los recursos obtenidos. Es posible que la misma empresa registre más de un proyecto y cada proyecto puede crear una subasta. Los empresarios reciben un mensaje cada que un proyecto nuevo es registrado.
                 </div-->
                 <div class="wizard-pane" role="tabpanel">
-                    <form id="loginform" action="step_project.php" method="post">
+                    <form id="proyectform" action="step_project.php" method="post">
                     <div class="form-body">
                         <h3 class="box-title">Datos</h3>
                         <hr>
@@ -143,15 +146,15 @@ require_once("config.php");
 
                     </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-success" id="btn-signup" name="btn-signup"> <i class="fa fa-check"></i> Guardar</button>
-                            <button type="button" class="btn btn-default">Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="btn-proyect" name="btn-proyect"> <i class="fa fa-check"></i> Guardar</button>
+
                         </div>
                     </form>
                 </div>
                 <div class="wizard-pane" role="tabpanel">
                     <form id="videoform" action="step_project.php" method="post">
                         <div class="form-body">
-                            <h3 class="box-title">Datos</h3>
+                            <h3 class="box-title">Datos: <?php echo 'Nombre Proyecto:'.$_SESSION["reg_proy-desc"]; ?></h3>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
@@ -159,6 +162,11 @@ require_once("config.php");
                                         <label class="control-label">Video</label>
                                         <input type="text" id="video" name="video" class="form-control" placeholder="Video" required="">
                                         <span class="help-block"> URL del video de Youtube </span> </div>
+
+                                    <div class="form-group">
+                                    <label class="control-label">Monto</label>
+                                    <input type="text" id="monto" name="monto" class="form-control" placeholder="Monto Base requerido" required=""></div>
+
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
@@ -178,8 +186,8 @@ require_once("config.php");
 
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-success" id="btn-signup" name="btn-signup"> <i class="fa fa-check"></i> Guardar</button>
-                            <button type="button" class="btn btn-default">Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="btn-video" name="btn-video"> <i class="fa fa-check"></i> Guardar</button>
+
                         </div>
                     </form>
                 </div>
@@ -218,6 +226,7 @@ require_once("config.php");
 <script src="../plugins/bower_components/jquery-wizard-master/libs/formvalidation/bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.js"></script>
+<script src="tproyectos/ps_step_proyect.js"></script>
 <script type="text/javascript">
         (function(){
             $('#exampleBasic').wizard({
