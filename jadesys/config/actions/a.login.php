@@ -127,10 +127,12 @@ class A_LOG_IN
             $response['status'] = 'success'; // ya ha registrado datos extra
             $response['URL'] = $this->domain.'desktop.php';
             $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, puede continuar');
+            $response['other'] = 1;
         } else {
             $response['status'] = 'success'; // no ha registrado datos extra
             $response['URL'] =  $this->domain.'step2_'.$tabla.'.php';
             $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, por favor complete su registro');
+            $response['other'] = 0;
         }
 
         return $response;

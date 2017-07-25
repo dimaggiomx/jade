@@ -23,7 +23,7 @@ if ($_POST) {
     $t_var3 = strip_tags($var3);
 
 
-    // valido y en su caso guardo en sesion para posteriormente almacenar  paso1 + paso 2
+    // valido y en su caso guardo en sesion para posteriormente almacenar  pasobeso1 + paso 2
     if($t_var1 != "" && $t_var2 != "" && $t_var3 != "")
     {
 

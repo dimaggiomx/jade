@@ -49,6 +49,25 @@
                 // Verifica si es primera vez que entra
                 $response = $myLogin->user_firstLogin($DBcon,$objDatosUsr->id,$objDatosUsr->privilegio);
 
+                //verificar si no esta establecido el idEmpresa / idInversionista, se establece
+                if($response['other'] == 1)
+                {
+                    require_once(C_P_CLASES.'actions/a.general.php');
+                    $myReg = NEW A_REG_GEN("");
+
+                    if(!isset($_SESSION["ses_idEmp"]))
+                    {
+                        $_SESSION["ses_idEmp"] = $myReg->get_idEmpresa($objDatosUsr->id, $DBcon);
+                    }
+
+                    if(!isset($_SESSION["ses_idInv"]))
+                    {
+                        $_SESSION["ses_idInv"] = $myReg->get_idInversionista($objDatosUsr->id, $DBcon);
+                    }
+
+
+                }
+
             }
 
     }

@@ -42,6 +42,8 @@ if ($_POST) {
 
     if($continue == 1)
     {
+        // limpio las anteriores
+        unset($_SESSION["ses_lastId"]);
 
         require_once(C_P_CLASES.'actions/a.proyecto.php');
         $myReg = new A_PROY("");
@@ -50,7 +52,8 @@ if ($_POST) {
 
         $response = $myReg->ins_datos($DBcon);
 
-
+        // guardo el ultimo ID insertado
+        $_SESSION["ses_lastId"] = $response['lastId'];
 
     }
     else{

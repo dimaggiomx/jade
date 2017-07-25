@@ -99,6 +99,36 @@ class A_REG_GEN
         return $response;
     }
 
+    /***
+     *  Obtiene el id de empresa
+     */
+    function get_idEmpresa($iduser, $DBcon)
+    {
+
+        $query = "SELECT id FROM tempresas WHERE iduser = '" . $iduser . "'";
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+        $obj = $stmt->fetchObject();
+
+        return $obj->id;
+        //return $query;
+    }
+
+
+    /***
+     *  Obtiene el id de empresa
+     */
+    function get_idInversionista($iduser, $DBcon)
+    {
+
+        $query = "SELECT id FROM tinversionistas WHERE iduser = '" . $iduser . "'";
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+        $obj = $stmt->fetchObject();
+
+        return $obj->id;
+    }
+
 
 }
 ?>
