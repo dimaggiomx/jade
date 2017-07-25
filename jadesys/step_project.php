@@ -6,6 +6,9 @@ require_once("global.config.php");
 require_once("config.php");
 require_once('sescheck.php'); // para la sesion
 
+// limpio la sesion del ultimo id registrado
+unset($_SESSION["ses_lastId"]);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +26,7 @@ require_once('sescheck.php'); // para la sesion
 <link href="../plugins/bower_components/jquery-wizard-master/css/wizard.css" rel="stylesheet">
 <!-- Menu CSS -->
 <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="../plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
 <!-- animation CSS -->
 <link href="css/animate.css" rel="stylesheet">
 <!-- Custom CSS -->
@@ -94,7 +98,7 @@ require_once('sescheck.php'); // para la sesion
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
-            <h3 class="box-title m-b-0">Crear</h3>
+            <h3 class="box-title m-b-0">Crear:</h3>
             <p class="text-muted m-b-30 font-13"> La creación de un proyecto es un proceso indispensable previo a la obtención de recursos.</p>
             <div id="exampleBasic" class="wizard">
             <ul class="wizard-steps" role="tablist">
@@ -102,10 +106,13 @@ require_once('sescheck.php'); // para la sesion
                     <h4><span>1</span>Paso</h4>
                 </li-->
                 <li class="active" role="tab">
-                    <h4><span>1</span>Paso</h4>
+                    <h4><span>1</span>Datos Generales</h4>
                 </li>
                 <li role="tab">
-                    <h4><span>2</span>Paso</h4>
+                    <h4><span>2</span>Video</h4>
+                </li>
+                <li role="tab">
+                    <h4><span>3</span>Fotos - Documentos</h4>
                 </li>
             </ul>
             <div class="wizard-content">
@@ -154,7 +161,7 @@ require_once('sescheck.php'); // para la sesion
                 <div class="wizard-pane" role="tabpanel">
                     <form id="videoform" action="step_project.php" method="post">
                         <div class="form-body">
-                            <h3 class="box-title">Datos: <?php echo 'Nombre Proyecto:'.$_SESSION["reg_proy-desc"]; ?></h3>
+                            <h3 class="box-title">Datos</h3>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
@@ -166,14 +173,16 @@ require_once('sescheck.php'); // para la sesion
                                     <div class="form-group">
                                     <label class="control-label">Monto</label>
                                     <input type="text" id="monto" name="monto" class="form-control" placeholder="Monto Base requerido" required=""></div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-success" id="btn-video" name="btn-video"> <i class="fa fa-check"></i> Guardar</button>
 
+                                    </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
 
-                                    <div class="col-md-6 col-md-12 col-sm-6"> <img class="img-responsive" alt="user" src="../plugins/images/big/img1.jpg">
+                                    <div class="col-md-6 col-md-12 col-sm-6">
                                         <div class="white-box">
-                                            <div class="text-muted"><span class="m-r-10">May 16</span> <a class="text-muted m-l-10" href="#"><i class="fa fa-heart-o"></i> 2017</a></div>
                                             <h3 class="m-t-20 m-b-20">Guia para subir videos</h3>
                                             <p>Guia rapida para poder subir un video a Youtube e ingresarlo como parte de tu proyecto</p>
                                             <button class="btn btn-success btn-rounded waves-effect waves-light m-t-20">Leer mas</button>
@@ -185,11 +194,37 @@ require_once('sescheck.php'); // para la sesion
                             </div>
 
                         </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-success" id="btn-video" name="btn-video"> <i class="fa fa-check"></i> Guardar</button>
 
-                        </div>
                     </form>
+                </div>
+
+                <div class="wizard-pane" role="tabpanel">
+                        <div class="form-body">
+                            <h3 class="box-title">Carga de Fotos y Documentos: <?php echo 'id Proyecto:'.$_SESSION["ses_proyId"]; ?></h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6 ol-md-6 col-xs-12">
+                                    <div class="white-box">
+                                        <p class="text-muted m-b-30"> Seleccionar o arrastrar Fotos (JPG, PNG)</p>
+                                        <form action="documents/ps_fotos.php" class="dropzone" id="my-awesome-dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 ol-md-6 col-xs-12">
+                                    <div class="white-box">
+                                        <p class="text-muted m-b-30"> Seleccionar o arrastrar documentos (DOC, PDF, PPT</p>
+                                        <form action="documents/ps_docs.php" class="dropzone" id="my-awesome-dropzone2">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
 
             </div>
@@ -227,6 +262,9 @@ require_once('sescheck.php'); // para la sesion
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.js"></script>
 <script src="tproyectos/ps_step_proyect.js"></script>
+<script src="../plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+
+<!-- Dropzone Plugin JavaScript -->
 <script type="text/javascript">
         (function(){
             $('#exampleBasic').wizard({
@@ -238,6 +276,89 @@ require_once('sescheck.php'); // para la sesion
 
         })();
 </script>
+<script>
+    $(function(){
+        Dropzone.options.myAwesomeDropzone = {
+            maxFilesize: 5,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".png,.jpg,.jpeg",
+            maxFiles: 10,
+            init:function(){
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Delete";
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+            }
+        };
+    })
+
+
+    $(function(){
+        Dropzone.options.myAwesomeDropzone2 = {
+            maxFilesize: 5,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".pdf,.docx,.doc,.ppt,.pptx",
+            maxFiles: 10,
+            init:function(){
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Delete";
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+            }
+        };
+    })
+</script>
+
 <!--Style Switcher -->
 <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>

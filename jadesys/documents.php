@@ -23,6 +23,8 @@ require_once('sescheck.php'); // para la sesion
 <link href="css/animate.css" rel="stylesheet">
 <!-- Menu CSS -->
 <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <!-- Dropzone css -->
+  <link href="../plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
 <!-- Custom CSS -->
 <link href="css/style.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -77,7 +79,7 @@ require_once('sescheck.php'); // para la sesion
     <div class="container-fluid">
       <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Documentos</h4>
+          <h4 class="page-title">Documentos: </h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
           <ol class="breadcrumb">
@@ -99,7 +101,7 @@ require_once('sescheck.php'); // para la sesion
                 <div class="white-box">
                   <h3 class="box-title m-b-0">Dropzone </h3>
                   <p class="text-muted m-b-30"> Seleccionar o arrastrar documentos</p>
-                  <form action="#" class="dropzone">
+                  <form action="documents/ps_documents.php" class="dropzone" id="my-awesome-dropzone">
                     <div class="fallback">
                       <input name="file" type="file" multiple />
                     </div>
@@ -135,9 +137,54 @@ require_once('sescheck.php'); // para la sesion
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="market/ps_search.js"></script>
+<!--script src="documents/ps_documents.js"></script -->
 <!-- Dropzone Plugin JavaScript -->
 <script src="../plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+
+<script type="text/javascript">
+
+    $(function(){
+        Dropzone.options.myAwesomeDropzone = {
+            maxFilesize: 5,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+            maxFiles: 2,
+            init:function(){
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Delete";
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+            }
+        };
+    })
+
+</script>
+
 <!--Style Switcher -->
 <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>

@@ -270,12 +270,12 @@ $result = $myData->check_status_record($DBcon,$_SESSION['ses_priv'],$_SESSION['s
 <script src="js/waves.js"></script>
 <!--Morris JavaScript -->
 <script src="../plugins/bower_components/raphael/raphael-min.js"></script>
-<script src="../plugins/bower_components/morrisjs/morris.js"></script>
+<!--script src="../plugins/bower_components/morrisjs/morris.js"></script-->
 <script src="../plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
 <script src="../plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.js"></script>
-<script src="js/dashboard3.js"></script>
+<!--script src="js/dashboard3.js"></script-->
 <!--Style Switcher -->
 <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
