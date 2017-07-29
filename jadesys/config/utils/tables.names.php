@@ -15,6 +15,8 @@ class A_TABLENAMES
     var $tnotify=array(); # contains field names
     var $tsubastas=array(); # contains field names
     var $tinv_giro=array(); # contains field names
+    var $tuploads=array(); # contains field names
+    var $tuplproy=array(); # contains field names
 
     /* Constructor: User passes in the name of the script where
     * form data is to be sent ($processor) and the value to show
@@ -33,6 +35,8 @@ class A_TABLENAMES
         $arrTnotify=array();
         $arrTsubastas=array();
         $arrTinv_giro=array();
+        $arrTuploads = array();
+        $arrTuplproy = array();
 
         //inicializa nombres de tablas
         $this->tblusers = $arrTblusers;
@@ -44,6 +48,8 @@ class A_TABLENAMES
         $this->tnotify = $arrTnotify;
         $this->tsubastas = $arrTsubastas;
         $this->tinv_giro=$arrTinv_giro;
+        $this->tuploads=$arrTuploads;
+        $this->tuplproy=$arrTuplproy;
 
 
     }
@@ -212,9 +218,41 @@ class A_TABLENAMES
     }
 
 
+    /**
+     * Almacena los datos de la tabla tuploads
+     */
+    function set_dataTuploads()
+    {
+        $this->tuploads['data1'] = 'idUsuario';
+        $this->tuploads['data2'] = 'filePath';
+        $this->tuploads['data3'] = 'regDate';
+        $this->tuploads['data4'] = 'status';
+        $this->tuploads['data5'] = 'tipo';
+    }
+
+
+    /**
+     * Almacena los datos de la tabla tuplproy
+     */
+    function set_dataTuplproy()
+    {
+        $this->tuplproy['data1'] = 'idProyecto';
+        $this->tuplproy['data2'] = 'idUpload';
+    }
+
     function get_tempresas()
     {
         return $this->tempresas;
+    }
+
+    function get_tuploads()
+    {
+        return $this->tuploads;
+    }
+
+    function get_tuplproy()
+    {
+        return $this->tuplproy;
     }
 
     function get_tinversionistas()

@@ -468,6 +468,35 @@ CLASS STRFN
 	   
 	   return $newDateTime;
     }
+
+
+    /***
+     * 2017 Genera la fecha en formato generico YYYY-MM-DD
+     * @param varchar $fecha   //fecha en formato MM/DD/YYYY
+     * @param varchar $tipoSeparador // char que separa
+     */
+    public  function checkDate($fecha, $tipoSeparador='/')
+    {
+        $sp2 = explode($tipoSeparador,$fecha);
+
+        $anio = trim($sp2[2]);
+        $mes = trim($sp2[0]);
+        $dia = trim($sp2[1]);
+
+        if(strlen($mes)<2){
+            $mes = "0".$mes;
+        }
+
+        if(strlen($dia)<2){
+            $dia = "0".$dia;
+        }
+
+        $hora = "00:00:00";
+
+        $newDateTime = $anio."-".$mes."-".$dia."T".$hora;
+
+        return $newDateTime;
+    }
 	
 }	
 ?>
