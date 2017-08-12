@@ -10,21 +10,16 @@
     <div class="span4">
         <div class="centered service">
             <div class="circle-border zoom-in">
-                <img class="img-circle" src="images/Service1.png" alt="service 1">
+                <a href="#paso1"> <img class="img-circle" src="images/Service1.png" alt="service 1"></a>
             </div>
             <h3>Paso 1</h3>
-            <p>Da el primer paso:<br><br>
-                I. Datos de Perfil<br>
-                II. ¿Sabes qué quieres?, ¡Cuentanoslo!<br>
-                <a href="../jadesys/register.html">Clic aquí</a>
-
-            </p>
+            <p>Da el primer paso</p>
         </div>
     </div>
     <div class="span4">
         <div class="centered service">
             <div class="circle-border zoom-in">
-                <img class="img-circle" src="images/Service2.png" alt="service 2" />
+                <a href="#paso2"><img class="img-circle" src="images/Service2.png" alt="service 2" /></a>
             </div>
             <h3>Paso 2</h3>
             <p>Estructuración y Diagnóstico</p>
@@ -33,7 +28,7 @@
     <div class="span4">
         <div class="centered service">
             <div class="circle-border zoom-in">
-                <img class="img-circle" src="images/Service3.png" alt="service 3">
+                <a href="#paso3"> <img class="img-circle" src="images/Service3.png" alt="service 3"></a>
             </div>
             <h3>Paso 3</h3>
             <p>Sal a Mercado</p>

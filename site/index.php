@@ -11,6 +11,7 @@ header("Pragma: no-cache");
         <meta charset=utf-8>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Jade Capital Flow</title>
+        <META http-equiv="refresh" content="5;URL=index_mid.php">
         <!-- Load Roboto font -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <!-- Load css styles -->
@@ -47,7 +48,7 @@ header("Pragma: no-cache");
                     <!-- Main navigation -->
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav" id="top-navigation">
-                            <li><a href="../jadesys/register.html">Regístrate</a></li>
+                            <!--li><a href="../jadesys/register.html">Regístrate</a></li-->
                             <li class="active"><a href="index_mid.php">Ingresar</a></li>
                         </ul>
                     </div>
@@ -57,7 +58,9 @@ header("Pragma: no-cache");
         </div>
         <!-- Start home section -->
         <div id="home" style="height: 80%" align="center">
+            <a href="index_mid.php" target="_self">
             <img src="mainBg.png" align="center">
+            </a>
             <!-- Start cSlider -->
 
         </div>
