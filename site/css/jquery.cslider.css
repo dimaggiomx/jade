@@ -46,7 +46,7 @@
     background:transparent url(../fondoBanner_fin.png) no-repeat center center;
 }
 
-/*
+
 .da-slide2 {
     position: absolute;
     width: 100%;
@@ -54,8 +54,8 @@
     top: 0px;
     left: 0px;
     text-align: left;
-    background:transparent url(../fondoBanner_fin.png) no-repeat center center;
-}  */
+    background:transparent url(../fondoBanner_fin2.png) no-repeat center center;
+}
 
 .da-slide-current {
     z-index: 900;
