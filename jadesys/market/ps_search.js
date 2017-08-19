@@ -67,9 +67,15 @@ alert('Ya no aplica');
 
 function paginateMe(page){
 
-    //alert('Pulsado '+page);
-    document.getElementById('page').value = page;
 
+    document.getElementById('page').value = page;
+    //alert('Pulsado '+page);
+
+    // do what you like with the input
+    //$inputExtra = $('<input type="text" name="pageData" id="pageData"/>').val(page);
+
+    // append to the form
+    //$('#searchMe').append($inputExtra);
 
     $.ajax({
         url: 'market/ps_search.php',
@@ -86,16 +92,18 @@ function paginateMe(page){
 
                 if ( data.status==='success' ) {
                     $(".preloader").fadeOut();
-                    $('#errorDiv').slideDown('fast', function(){
-                        $('#errorDiv').html('<div class="alert alert-info">'+data.message+'</div>');
+                    //$('#errorDiv').slideDown('fast', function(){
+                        //$('#errorDiv').html('<div class="alert alert-info">'+data.message+'</div>');
+                        $('#resDiv').html(data.result);
                         //$("#loginform").trigger('reset');
-                    }).delay(3000).slideUp('fast');
+                    //}).delay(3000).slideUp('fast');
 
                 } else {
                     $(".preloader").fadeOut();
-                    $('#errorDiv').slideDown('fast', function(){
-                        $('#errorDiv').html('<div class="alert alert-danger">'+data.message+'</div>');
-                    }).delay(3000).slideUp('fast');
+                    //$('#errorDiv').slideDown('fast', function(){
+                        //$('#errorDiv').html('<div class="alert alert-danger">'+data.message+'</div>');
+                        $('#resDiv').html(data.result);
+                    //}).delay(3000).slideUp('fast');
                 }
 
             },3000);

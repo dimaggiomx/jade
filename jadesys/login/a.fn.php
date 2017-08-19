@@ -40,11 +40,38 @@
                 $_SESSION["ses_usr"] = $objDatosUsr->usuario;
                 $_SESSION["ses_priv"] = $objDatosUsr->privilegio;  // el privilegio es el tipo de user (inversionista B, Empresa C)
                 $_SESSION["ses_name"] = $objDatosUsr->nombre;
-                $_SESSION["ses_tipo"] = 'Empresa';
+                $_SESSION["ses_tipo"] = '';
                 if($_SESSION["ses_priv"]=='B')
                 {
                     $_SESSION["ses_tipo"] = 'Inversionista';
                 }
+
+                if($_SESSION["ses_priv"]=='D')
+                {
+                    $_SESSION["ses_tipo"] = 'Admin';
+                }
+
+                if($_SESSION["ses_priv"]=='E')
+                {
+                    $_SESSION["ses_tipo"] = 'Jade Agent';
+                }
+
+                if($_SESSION["ses_priv"]=='C')
+                {
+                    $_SESSION["ses_tipo"] = 'Empresa';
+                }
+
+
+
+                // obtengo permisos
+                $objPermisos = $myLogin->user_permisos($DBcon, $objDatosUsr->id);
+                $cont = 1;
+                while ($row = $objPermisos->fetchObject()) {
+
+                    $_SESSION["ses_p_".$cont] = $row->cpermis;
+                    $cont++;
+                }
+
 
                 // Verifica si es primera vez que entra
                 $response = $myLogin->user_firstLogin($DBcon,$objDatosUsr->id,$objDatosUsr->privilegio);

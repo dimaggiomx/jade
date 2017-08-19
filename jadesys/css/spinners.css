@@ -5,10 +5,14 @@
 }
 
 .cssload-speeding-wheel {
-  width: 31px;
-  height: 31px;
+  width: 61px;
+  height: 61px;
   margin: 0 auto;
-  border: 2px solid rgba(97,100,193,0.98);
+  border: 8px solid rgba(255, 255, 255, 1);
+
+/*  border: 5px solid rgba(97,100,193,0.98); */
+
+
   border-radius: 50%;
   border-left-color: transparent;
   border-right-color: transparent;

@@ -11,21 +11,23 @@ session_start();
 
 	if ($_POST) {
 
-		$var1 = trim($_POST['sproyecto']);
+		//$var1 = trim($_POST['sproyecto']);
 		$var2 = $_POST['page'];
+        //$var3 = $_POST['pageData'];
 
-        $t_var1 = strip_tags($var1);
+        //$t_var1 = strip_tags($var1);
 
-        //require_once(C_P_CLASES.'actions/a.regempresa.php');
-        //    $myReg = new A_REG_EMP("");
-        //    $myReg->add_dataExtra($t_var2,$t_var3,$t_var4,$t_var5,$t_var6,$t_var7,$t_var8,$t_var9,$t_var10,$t_var11, $t_var12, $t_var13, "", "");
-        //    $response = $myReg->upd_datosFiscales($DBcon,$var1);
+        require_once(C_P_CLASES.'actions/a.market.php');
+        $myReg = new A_MARKET("");
+        $disp = $myReg->search_marketPag($DBcon,$var2,5);
+        $disp = $myReg->disp_marketPage();
 
     }
 
 
-    $response['status'] = 'error'; // could not register
-    $response['message'] = '&nbsp; Buscado..'.$t_var1.'-'.$var2;
+    $response['status'] = 'success'; // could not register
+    $response['message'] = '&nbsp; Buscado..'.$var2.'-'.$var4.'-'.$var3;
+    $response['result'] =$disp;
 
 	echo json_encode($response);
 ?>

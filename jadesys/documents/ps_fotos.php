@@ -14,12 +14,12 @@ $storeFolder = 'uploads';   //2
 // idUsuario/idEmpresa-idInversionista/archivo
 
 $dir1 = $_SESSION["ses_id"];
-$dir2 = $_SESSION["ses_idEmp"];
+$dir2 = $_SESSION["ses_lastId"];
 
-if($_SESSION["ses_priv"] == 'B')
-{
-    $dir2 =  $_SESSION["ses_idInv"];
-}
+//if($_SESSION["ses_priv"] == 'B')
+//{
+//    $dir2 =  $_SESSION["ses_idInv"];
+//}
 
 
 //Check if the directory already exists. (idUsuario)

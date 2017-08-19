@@ -36,7 +36,7 @@ if(!is_dir($storeFolder.$ds.$dir1.$ds.$dir2)){
 }
 
 
-
+$temp = $_POST["ejemplo2"];
 
 if (!empty($_FILES)) {
 
@@ -56,7 +56,7 @@ if (!empty($_FILES)) {
     $myReg = new A_UPL("");
     $myReg->add_data($_SESSION["ses_id"],$bdFilePath);
 
-    $response = $myReg->ins_datos($DBcon);
-    $_SESSION["ses_tmp"] = $_POST["ej"];
+    //$response = $myReg->ins_datos($DBcon);
+    $_SESSION["ses_tmp"] = $temp;
 }
 ?>

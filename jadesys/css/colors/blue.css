@@ -10,7 +10,9 @@
   top: 0px;
   position: fixed;
   z-index: 99999;
-  background: #fff;
+
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 2em 2em rgba(0,0,0,0.5);
 }
 .preloader .cssload-speeding-wheel {
   position: absolute;
@@ -53,7 +55,9 @@ body {
   color: #ffffff;
 }
 .navbar-header {
-  background: #03a9f3;
+/*  background: #03a9f3; */
+  background: #DEDEDE;
+  border-bottom: 1px solid darkgreen;
 }
 .navbar-top-links > li > a {
   color: #ffffff;
@@ -104,7 +108,9 @@ body {
   color: #03a9f3;
 }
 .fix-sidebar .top-left-part {
-  background: #03a9f3;
+  /* background: #03a9f3; */
+  background: #DEDEDE;
+  border-bottom: 1px solid darkgreen;
 }
 /*themecolor*/
 .bg-theme {
