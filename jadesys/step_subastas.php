@@ -6,6 +6,10 @@ require_once("global.config.php");
 require_once("config.php");
 require_once('sescheck.php'); // para la sesion
 
+
+$idProyecto = $_GET["idProyecto"];
+
+/*
 // para datos del proyecto
 require_once(C_P_CLASES."actions/a.proyecto.php");
 $myData = NEW A_PROY("");
@@ -15,6 +19,8 @@ $filter .= " AND id NOT IN (SELECT idProyecto FROM tsubastas)";
 
 $result = array();
 $result = $myData->get_proyectos($DBcon,'id,nombre',$filter);
+
+
 
 if($result['status'] == 'success')
 {
@@ -34,6 +40,7 @@ else
 }
 
 //$dispProy = $result;
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,8 +147,11 @@ else
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label class="col-sm-6">Proyecto</label>
-                                            <?php echo $dispProy; ?>
+                                            <?php //echo $dispProy; ?>
+                                            <div class="form-group">
+                                                <label class="control-label">Proyecto</label>
+                                                <input type="text" id="proyecto" name="proyecto" class="form-control" value="<?php echo $idProyecto; ?>" >
+                                            </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-sm-6">

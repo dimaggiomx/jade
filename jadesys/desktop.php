@@ -7,10 +7,10 @@ require_once("config.php");
 require_once('sescheck.php'); // para la sesion
 
 // para datos generales
-require_once(C_P_CLASES."actions/a.general.php");
-$myData = NEW A_REG_GEN("");
-$result = $myData->check_status_record($DBcon,$_SESSION['ses_priv'],$_SESSION['ses_id']);
-
+//require_once(C_P_CLASES."actions/a.general.php");
+//$myData = NEW A_REG_GEN("");
+//$result = $myData->check_status_record($DBcon,$_SESSION['ses_priv'],$_SESSION['ses_id']);
+$result = 'BIENVENIDO';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +83,7 @@ $result = $myData->check_status_record($DBcon,$_SESSION['ses_priv'],$_SESSION['s
     <div class="container-fluid">
       <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title"><?php echo $result['URL']; ?></h4>
+          <h4 class="page-title"><?php echo $result; ?></h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
           <ol class="breadcrumb">

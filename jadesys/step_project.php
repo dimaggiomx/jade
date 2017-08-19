@@ -200,12 +200,12 @@ unset($_SESSION["ses_lastId"]);
 
                 <div class="wizard-pane" role="tabpanel">
                         <div class="form-body">
-                            <h3 class="box-title">Carga de Fotos y Documentos: <?php echo 'id Proyecto:'.$_SESSION["ses_proyId"]; ?></h3>
+                            <h3 class="box-title">Carga de Fotos y Documentos</h3>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-6 ol-md-6 col-xs-12">
                                     <div class="white-box">
-                                        <p class="text-muted m-b-30"> Seleccionar o arrastrar Fotos (JPG, PNG)</p>
+                                        <p class="text-muted m-b-30"> Agregar Fotos, imagenes soporte (JPG, PNG)</p>
                                         <form action="documents/ps_fotos.php" class="dropzone" id="my-awesome-dropzone">
                                             <div class="fallback">
                                                 <input name="file" type="file" multiple />
@@ -215,8 +215,20 @@ unset($_SESSION["ses_lastId"]);
                                 </div>
                                 <div class="col-sm-6 ol-md-6 col-xs-12">
                                     <div class="white-box">
-                                        <p class="text-muted m-b-30"> Seleccionar o arrastrar documentos (DOC, PDF, PPT</p>
+                                        <p class="text-muted m-b-30"> Agregar documentos soporte (DOC, PDF, PPT)</p>
                                         <form action="documents/ps_docs.php" class="dropzone" id="my-awesome-dropzone2">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 ol-md-6 col-xs-12">
+                                    <div class="white-box">
+                                        <p class="text-muted m-b-30"> Subir tu Pitch Document</p>
+                                        <form action="documents/ps_pitch.php" class="dropzone" id="my-awesome-dropzone3">
                                             <div class="fallback">
                                                 <input name="file" type="file" multiple />
                                             </div>
@@ -325,6 +337,46 @@ unset($_SESSION["ses_lastId"]);
             dictResponseError: 'Server not Configured',
             acceptedFiles: ".pdf,.docx,.doc,.ppt,.pptx",
             maxFiles: 10,
+            init:function(){
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Delete";
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+            }
+        };
+    })
+
+    $(function(){
+        Dropzone.options.myAwesomeDropzone3 = {
+            maxFilesize: 3,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".pdf",
+            maxFiles: 1,
             init:function(){
                 var self = this;
                 // config

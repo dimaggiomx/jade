@@ -58,13 +58,12 @@ if($_SESSION["ses_priv"] == 'B')  //Inversionista
     <!-- /.dropdown -->
     <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $_SESSION['ses_name']; ?></b> </a>
         <ul class="dropdown-menu dropdown-user animated flipInY">
-            <li><a href="<?php echo $profile; ?>"><i class="ti-user"></i> My Profile</a></li>
-            <!--li><a href="#"><i class="ti-wallet"></i> My Balance</a></li-->
-            <li><a href="inbox.php"><i class="ti-email"></i> Inbox</a></li>
+            <?php if($_SESSION["ses_p_1"] == 1){ ?><li><a href="<?php echo $profile; ?>"><i class="ti-user"></i> My Profile</a></li><?php } ?>
+            <?php if($_SESSION["ses_p_2"] == 1){ ?><li><a href="inbox.php"><i class="ti-email"></i> Inbox</a></li><?php } ?>
             <li role="separator" class="divider"></li>
-            <li><a href="configuration.php"><i class="ti-settings"></i> Account Setting</a></li>
+            <?php if($_SESSION["ses_p_3"] == 1){ ?><li><a href="configuration.php"><i class="ti-settings"></i> Account Setting</a></li><?php } ?>
             <li role="separator" class="divider"></li>
-            <li><a href="out.php"><i class="fa fa-power-off"></i> Logout</a></li>
+            <?php if($_SESSION["ses_p_4"] == 1){ ?><li><a href="out.php"><i class="fa fa-power-off"></i> Logout</a></li><?php } ?>
         </ul>
         <!-- /.dropdown-user -->
     </li>

@@ -7,9 +7,9 @@ require_once("config.php");
 require_once('sescheck.php'); // para la sesion
 
 // para consulta
-require_once(C_P_CLASES."actions/a.market.php");
-$myData = NEW A_MARKET("");
-$result = $myData->get_market($DBcon);
+//require_once(C_P_CLASES."actions/a.market.php");
+//$myData = NEW A_MARKET("");
+//$result = $myData->get_market($DBcon);
 
 //$response['status'] = 'success'; // could not register
 //$response['msg'] = 'Se obtuvo la información';
@@ -46,7 +46,7 @@ $result = $myData->get_market($DBcon);
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body class="fix-sidebar">
+<body class="fix-sidebar" onload="paginateMe(1)">
 <!-- json response will be here -->
 <div id="errorDiv" class="errorDiv" align="center"></div>
 <!-- json response will be here -->
@@ -64,7 +64,7 @@ $result = $myData->get_market($DBcon);
         <li>
           <form role="search" class="app-search hidden-xs">
             <input type="text" placeholder="Search..." class="form-control">
-            <a href=""><i class="fa fa-search"></i></a>
+            <a href="#"><i class="fa fa-search"></i></a>
           </form>
         </li>
       </ul>
@@ -80,29 +80,19 @@ $result = $myData->get_market($DBcon);
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
       <?php include 'd_left_menu.php' ?>
     </div>
+    <form role="search" name="searchMe" id="searchMe">
+      <input type="hidden" placeholder="Search..." class="form-control" name="page" id="page">
+    </form>
   </div>
   <!-- Left navbar-header end -->
   <!-- Page Content -->
   <div id="page-wrapper">
-    <div class="container-fluid">
-      <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Market</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-          <ol class="breadcrumb">
-            <li><a href="desktop.php">Escritorio</a></li>
-            <!--li><a href="#">Ui Elements</a></li-->
-            <li class="active"><?php echo $_SESSION["ses_tipo"]; ?></li>
-          </ol>
-        </div>
-        <!-- /.col-lg-12 -->
-      </div>
-      <!-- .row -->
+    <div class="container-fluid" id="resDiv" name="resDiv">
+
       <?php
 
        //echo $result['estatus'];
-       echo $result['data'];
+       //echo $result['data'];
        //echo $result['msg'];
 
       ?>

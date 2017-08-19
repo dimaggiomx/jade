@@ -6,6 +6,12 @@ require_once("global.config.php");
 require_once("config.php");
 require_once('sescheck.php'); // para la sesion
 
+// para datos generales
+require_once(C_P_CLASES."actions/a.msg.php");
+$myData = NEW A_MSG("");
+$subquery = " WHERE idusuario in (0,'".$_SESSION["ses_id"]."') ORDER BY regDate DESC";
+$result = $myData->get_msgs($DBcon, $subquery);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,18 +132,8 @@ require_once('sescheck.php'); // para la sesion
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="unread">
-                      <td><div class="checkbox m-t-0 m-b-0">
-                          <input  type="checkbox">
-                          <label for="checkbox0"></label>
-                        </div></td>
-                      <!--td class="hidden-xs"><i class="fa fa-star-o"></i></td-->
-                      <td class="hidden-xs">Nuevo Cliente</td>
-                      <td class="max-texts"> <a href="inbox-detail.html" /><span class="label label-warning m-r-10">Leido</span> Se registro una nueva Empresa: Empresa de Prueba 1</td>
-                      </td>
-                      <!--td class="hidden-xs"><i class="fa fa-paperclip"></i></td-->
-                      <td class="text-right"> 12:30 PM </td>
-                    </tr>
+
+                      <?php echo $result; ?>
 
 
                     </tbody>

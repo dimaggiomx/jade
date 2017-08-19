@@ -83,7 +83,7 @@ require_once('sescheck.php'); // para la sesion
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
           <ol class="breadcrumb">
-            <li><a href="desktop.php">Escritorio</a></li>
+            <li><a href="desktop.php">Escritorio <?php echo $_SESSION["ses_tmp"]; ?></a></li>
             <!--li><a href="#">Ui Elements</a></li-->
             <li class="active"><?php echo $_SESSION["ses_tipo"]; ?></li>
           </ol>
@@ -103,9 +103,13 @@ require_once('sescheck.php'); // para la sesion
                   <p class="text-muted m-b-30"> Seleccionar o arrastrar documentos</p>
                   <form action="documents/ps_documents.php" class="dropzone" id="my-awesome-dropzone">
                     <div class="fallback">
-                      <input name="file" type="file" multiple />
+                        <input name="file" type="file" multiple />
+
                     </div>
+                      <input name="ejemplo2" id="ejemplo2" type="text" value="FRANCESCOxxxyyy" />
                   </form>
+
+
                 </div>
               </div>
             </div>
@@ -160,7 +164,12 @@ require_once('sescheck.php'); // para la sesion
                     console.log('new file added ', file);
                 });
                 // Send file starts
-                self.on("sending", function (file) {
+                self.on("sending", function (file, xhr, formData) {
+
+                    var name = this.element.querySelector('input[name=ejemplo2]').value;
+
+                    formData.append('ejemplo2', name);
+
                     console.log('upload started', file);
                     $('.meter').show();
                 });

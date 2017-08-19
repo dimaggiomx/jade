@@ -41,7 +41,7 @@ require_once('sescheck.php'); // para la sesion
     <div class="white-box">
       <div id="errorDiv"></div>
       <form class="form-horizontal form-material" id="loginform" action="index.html">
-        <input type="text" id="iduser" name="iduser" value="<?php echo $_SESSION["ses_id"]; ?>" required>
+        <input type="hidden" id="iduser" name="iduser" value="<?php echo $_SESSION["ses_id"]; ?>" required>
         <h3 class="box-title m-b-20">Concluir Registro</h3>
         <div class="form-group ">
           <div class="col-xs-12">
@@ -320,7 +320,11 @@ require_once('sescheck.php'); // para la sesion
             </select>
           </div>
         </div>
-
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" type="text" required="" placeholder="Cuenta de banco" name="cuenta" id="cuenta">
+          </div>
+        </div>
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" id="btn-signup" name="btn-signup">Registrar</button>

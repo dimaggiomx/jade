@@ -8,10 +8,14 @@ require_once('sescheck.php'); // para la sesion
 
 // para consulta
 $idProyecto = $_GET["idProyecto"];
+$idUsuario = "";
+if(isset($_GET['idUsuario'])) {
+    $idUsuario = $_GET['idUsuario'];
+}
 
 require_once(C_P_CLASES."actions/a.general.php");
 $myData = NEW A_REG_GEN("");
-$result = $myData->search_fotosProyecto($DBcon, $idProyecto);
+$result = $myData->search_doctosProyecto($DBcon, $idProyecto, $idUsuario);
 
 
 ?>
@@ -84,7 +88,7 @@ $result = $myData->search_fotosProyecto($DBcon, $idProyecto);
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Gallery page</h4>
+                    <h4 class="page-title">Documentos</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
@@ -96,24 +100,12 @@ $result = $myData->search_fotosProyecto($DBcon, $idProyecto);
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="white-box">
-                        <h3 class="box-title">Gallery Page</h3>
-                        <div id="gallery">
-                            <div id="gallery-header">
-                                <div id="gallery-header-center">
-                                    <div id="gallery-header-center-left">
-                                        <div class="gallery-header-center-right-links" id="filter-all">All</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="gallery-content">
-                                <div id="gallery-content-center">
-                                    <?php echo $result; ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+                        <h3 class="box-title">Documentos</h3>
+                        <ul class="feeds">
+                            <?php echo $result; ?>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -137,68 +129,6 @@ $result = $myData->search_fotosProyecto($DBcon, $idProyecto);
 <script src="js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
 <script src="js/waves.js"></script>
-<script type="text/javascript" src="../plugins/bower_components/gallery/js/animated-masonry-gallery.js"></script>
-<script type="text/javascript" src="../plugins/bower_components/gallery/js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="../plugins/bower_components/fancybox/ekko-lightbox.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function ($) {
-        // delegate calls to data-toggle="lightbox"
-        $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
-            event.preventDefault();
-            return $(this).ekkoLightbox({
-                onShown: function() {
-                    if (window.console) {
-                        return console.log('Checking our the events huh?');
-                    }
-                },
-                onNavigate: function(direction, itemIndex) {
-                    if (window.console) {
-                        return console.log('Navigating '+direction+'. Current item: '+itemIndex);
-                    }
-                }
-            });
-        });
-
-        //Programatically call
-        $('#open-image').click(function (e) {
-            e.preventDefault();
-            $(this).ekkoLightbox();
-        });
-        $('#open-youtube').click(function (e) {
-            e.preventDefault();
-            $(this).ekkoLightbox();
-        });
-
-        // navigateTo
-        $(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
-            event.preventDefault();
-
-            var lb;
-            return $(this).ekkoLightbox({
-                onShown: function() {
-
-                    lb = this;
-
-                    $(lb.modal_content).on('click', '.modal-footer a', function(e) {
-
-                        e.preventDefault();
-                        lb.navigateTo(2);
-
-                    });
-
-                }
-            });
-        });
-
-
-    });
-</script>
-<script type="text/javascript">
-    function paginateMe(page)
-    {
-        alert(page);
-    }
-</script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.js"></script>
 <!--Style Switcher -->

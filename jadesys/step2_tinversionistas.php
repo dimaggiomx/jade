@@ -59,7 +59,7 @@ while ($row = $stmt->fetchObject()) {
       <div id="errorDiv" class="errorDiv" align="center"></div>
       <!-- json response will be here -->
       <form class="form-horizontal form-material" id="loginform" action="tinversionistas/a.fn.php" method="post">
-        <input type="text" id="iduser" name="iduser" value="<?php echo $_SESSION["ses_id"]; ?>" required>
+        <input type="hidden" id="iduser" name="iduser" value="<?php echo $_SESSION["ses_id"]; ?>" required>
         <h3 class="box-title m-b-20">Concluir Registro</h3>
         <div class="form-group ">
           <div class="col-xs-12">
@@ -143,7 +143,11 @@ while ($row = $stmt->fetchObject()) {
             <input class="form-control" type="text" required="" placeholder="Telefono Oficina" name="otelofc" id="otelofc">
           </div>
         </div>
-
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" type="text" required="" placeholder="Cuenta de banco" name="cuenta" id="cuenta">
+          </div>
+        </div>
 
         <div class="form-group">
           <label class="control-label col-xs-12">Rubros de Interés</label>
@@ -153,6 +157,8 @@ while ($row = $stmt->fetchObject()) {
             </select>
           </div>
         </div>
+
+
 
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
