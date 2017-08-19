@@ -153,4 +153,27 @@ class A_UPL
         return $query;
     }
 
+    /***
+     * Busqueda de usuarios del sistema
+     */
+    function upd_logoProyecto($DBcon, $idProyecto, $logoPath)
+    {
+        $query = "UPDATE tproyectos SET logo = '".$logoPath."' WHERE id = '".$idProyecto."'";
+
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+
+        return $query;
+    }
+
+    function upd_pitchProyecto($DBcon, $idProyecto, $pitchpath)
+    {
+        $query = "UPDATE tproyectos SET pitchdocto = '".$pitchpath."' WHERE id = '".$idProyecto."'";
+
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+
+        return $query;
+    }
+
 }

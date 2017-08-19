@@ -44,7 +44,7 @@ class A_REG_INV
      *
      */
     function add_data($dato1,$dato2,$dato3,$dato4,$dato5, $dato6, $dato7, $dato8, $dato9, $dato10,
-                      $dato11,$dato13)
+                      $dato11,$dato13,$cuenta)
     {
         $this->data['data1'] = $dato1; //iduser
         $this->data['data2'] = $dato2; //gnombre
@@ -58,6 +58,7 @@ class A_REG_INV
         $this->data['data10'] = $dato10; //ogiro
         $this->data['data11'] = $dato11; //orubrosinteres
         $this->data['data13'] = $dato13; //regdate
+        $this->data['data14'] = $cuenta; //cuenta de banco
     }
 
 
@@ -104,7 +105,7 @@ class A_REG_INV
                     ," . $this->arrDataNames['data5'] . "," . $this->arrDataNames['data6'] . "
                     ," . $this->arrDataNames['data7'] . "," . $this->arrDataNames['data8'] . "
 		            ," . $this->arrDataNames['data9'] . "," . $this->arrDataNames['data10'] . "
-		            ," . $this->arrDataNames['data13'] . "
+		            ," . $this->arrDataNames['data13'] . "," . $this->arrDataNames['data29'] . "
 		            )
 		        VALUES
                     ('" . $this->data['data1'] . "','" . $this->data['data2'] . "'
@@ -112,7 +113,7 @@ class A_REG_INV
                     ,'" . $this->data['data5'] . "','" . $this->data['data6'] . "'
                     ,'" . $this->data['data7'] . "','" . $this->data['data8'] . "'
 		            ,'" . $this->data['data9'] . "','" . $this->data['data10'] . "'
-                    ,'" . $now . "'
+                    ,'" . $now . "', '" . $this->data['data14'] . "'
                     );";
 
         $stmt = $DBcon->prepare($query);
@@ -122,6 +123,17 @@ class A_REG_INV
             $response['status'] = 'success';
             $response['message'] = $STR->setMsgStyle('&nbsp; Registro exitoso, Gracias!');
             $response['URL'] = $this->domain.'desktop.php';
+
+            // registro msg de nuevo inversionista y msg de complementa tu registro (idmsg = 1)
+            require_once(C_P_CLASES."actions/a.msg.php");
+            $myData = NEW A_MSG("");
+            $myData->add_data($this->data['data1'],1,$now,'step3_tinversionistas.php',1,'');
+            $resp2 = $myData->ins_msg($DBcon);
+
+            // idmsg = 8 es para nuevo inversionista registrado
+            $myData->add_data(0,8,$now,'#',1,''); //el idusuario = 0 es para que TODOS vean el msg.
+            $resp2 = $myData->ins_msg($DBcon);
+
         } else {
             $response['status'] = 'error'; // could not register
             $response['message'] = $STR->setMsgStyle('&nbsp; No se pudo registrar, intente nuevamente más tarde', 3);
@@ -132,7 +144,7 @@ class A_REG_INV
 
         // inserto los giros seleccionados
         $response = $this->ins_datosGiro($DBcon,$this->data['data11'],$lastId);
-
+        $response['message'] = $query;
         return $response;
 	}
 

@@ -115,6 +115,8 @@ class A_REG_GEN
     }
 
 
+
+
     /***
      *  Obtiene el id de empresa
      */
@@ -128,6 +130,82 @@ class A_REG_GEN
 
         return $obj->id;
     }
+
+
+    /***
+     * Obtiene los datos del inversionista
+     */
+    function search_fotosProyecto($DBcon, $idProyecto)
+    {
+        $query = "SELECT A.id, A.filePath, A.tipo, B.idProyecto, B.idUpload FROM tuploads AS A
+                INNER JOIN tuplproy AS B 
+                ON A.id = B.idUpload
+                WHERE  A.tipo = '1'";
+
+        $where = " AND B.idProyecto = '".$idProyecto."'";
+
+        $query.= $where;
+
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+        $total = $stmt->rowCount();
+
+        $num_rows = $total;
+
+        $disp = '';
+        while ($row = $stmt->fetchObject()) {
+            $disp.='
+            <a href="documents/'.$row->filePath.'" data-toggle="lightbox" data-gallery="multiimages" data-title="Fotos del Proyecto">
+            <img src="documents/'.$row->filePath.'" alt="gallery" class="all studio"/></a>
+            ';
+        }
+
+        return $disp;
+    }
+
+
+    /***
+     * Obtiene los datos del inversionista
+     */
+    function search_doctosProyecto($DBcon, $idProyecto, $idUsuario)
+    {
+        if($idUsuario != "")
+        {
+            $query = "SELECT * FROM tuploads WHERE id NOT IN (
+	                    SELECT idUpload FROM tuplproy
+                      ) AND idUsuario = '".$idUsuario."' AND status = 1 AND tipo = 2";
+        }else{
+
+            $query = "SELECT A.id, A.filePath, A.tipo, B.idProyecto, B.idUpload, A.regDate FROM tuploads AS A
+                INNER JOIN tuplproy AS B 
+                ON A.id = B.idUpload
+                WHERE  A.tipo = '2'";
+
+            $where = " AND B.idProyecto = '".$idProyecto."'";
+        }
+
+
+        $query.= $where;
+
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+
+        $disp = '';
+        while ($row = $stmt->fetchObject()) {
+
+            // get filename
+            $source = $row->filePath;
+            $pos = strrpos($source, '/');
+            $fileName = substr($source, $pos === FALSE ? 0 : $pos);
+
+            $disp.='<li><div class="bg-info">
+                    <a href="documents/'.$row->filePath.'" target="_blank">
+                    <i class="fa fa-file text-white"></i></a></div>'.$fileName.' <span class="text-muted">'.$row->regDate.'</span></li>';
+        }
+
+        return $disp;
+    }
+
 
 
 }

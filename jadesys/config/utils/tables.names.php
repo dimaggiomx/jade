@@ -17,6 +17,7 @@ class A_TABLENAMES
     var $tinv_giro=array(); # contains field names
     var $tuploads=array(); # contains field names
     var $tuplproy=array(); # contains field names
+    var $tprimer_p=array(); # contains field names
 
     /* Constructor: User passes in the name of the script where
     * form data is to be sent ($processor) and the value to show
@@ -37,6 +38,7 @@ class A_TABLENAMES
         $arrTinv_giro=array();
         $arrTuploads = array();
         $arrTuplproy = array();
+        $arrTprimer_p = array();
 
         //inicializa nombres de tablas
         $this->tblusers = $arrTblusers;
@@ -50,7 +52,7 @@ class A_TABLENAMES
         $this->tinv_giro=$arrTinv_giro;
         $this->tuploads=$arrTuploads;
         $this->tuplproy=$arrTuplproy;
-
+        $this->tprimer_p=$arrTprimer_p;
 
     }
 
@@ -93,6 +95,9 @@ class A_TABLENAMES
         $this->tempresas['data29'] = 'fventasdirectas';
         $this->tempresas['data30'] = 'ranking';
         $this->tempresas['data31'] = 'eval';
+
+        $this->tempresas['data32'] = 'cuenta';
+
     }
 
     /**
@@ -129,6 +134,9 @@ class A_TABLENAMES
         $this->tinversionistas['data26'] = 'cdomicilioconyugue';
         $this->tinversionistas['data27'] = 'ranking';
         $this->tinversionistas['data28'] = 'regdate';
+
+        $this->tinversionistas['data29'] = 'cuenta';
+
 
     }
 
@@ -184,17 +192,38 @@ class A_TABLENAMES
         $this->tmsgtype['data4'] = 'estatus';
     }
 
-
     /**
      * Almacena los datos de la tabla tlbusers
      */
     function set_dataTnotify()
     {
-        $this->tnotify['data1'] = 'idmsgtype';
-        $this->tnotify['data2'] = 'regDate';
-        $this->tnotify['data3'] = 'link';
-        $this->tnotify['data4'] = 'estatus';
+        $this->tnotify['data1'] = 'id';
+        $this->tnotify['data2'] = 'idusuario';
+        $this->tnotify['data3'] = 'idmsgtype';
+        $this->tnotify['data4'] = 'regDate';
+        $this->tnotify['data5'] = 'link';
+        $this->tnotify['data6'] = 'estatus';
+        $this->tnotify['data7'] = 'complemento';
     }
+
+    /**
+     * Almacena los datos de la tabla tlbusers
+     */
+    function set_dataTprimer_p()
+    {
+        $this->tprimer_p['data1'] = 'idUsuario';
+        $this->tprimer_p['data2'] = 'preg1';
+        $this->tprimer_p['data3'] = 'preg2';
+        $this->tprimer_p['data4'] = 'preg3';
+        $this->tprimer_p['data5'] = 'preg4';
+        $this->tprimer_p['data6'] = 'preg5';
+        $this->tprimer_p['data7'] = 'preg6';
+        $this->tprimer_p['data8'] = 'preg7';
+        $this->tprimer_p['data9'] = 'preg8';
+        $this->tprimer_p['data10'] = 'regDate';
+    }
+
+
 
     /**
      * Almacena los datos de la tabla tlbusers
@@ -205,7 +234,8 @@ class A_TABLENAMES
         $this->tsubastas['data2'] = 'fechaInicio';
         $this->tsubastas['data3'] = 'fechaFin';
         $this->tsubastas['data4'] = 'tipo';
-        $this->tsubastas['data5'] = 'estatus';
+        $this->tsubastas['data5'] = 'regDate';
+        $this->tsubastas['data6'] = 'estatus';
     }
 
     /**
@@ -249,6 +279,13 @@ class A_TABLENAMES
     {
         return $this->tuploads;
     }
+
+
+    function get_tprimer_p()
+    {
+        return $this->tprimer_p;
+    }
+
 
     function get_tuplproy()
     {

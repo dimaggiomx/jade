@@ -117,7 +117,7 @@ class Paginator
         return $this->link_arr;
     }
 
-    function paintLinks($paginatorJsName,$first,$last,$arrLinks,$current)
+    function paintLinks2($paginatorJsName,$first,$last,$arrLinks,$current)
     {
         $paginatorLinks = '<div align="center" id="paging">';
 
@@ -148,6 +148,39 @@ class Paginator
         }
 
         $paginatorLinks .= '</div>'; return $paginatorLinks;
+    }
+
+    function paintLinks($paginatorJsName,$first,$last,$arrLinks,$current)
+    {
+        $paginatorLinks = '<div class="row"><ul class="pagination m-b-0">';
+
+        if($first)
+        {
+            $paginatorLinks .= '<li class="disabled"><a href="javascript:'.$paginatorJsName.'(\''.$first.'\')"><i class="fa fa-angle-left"></i></a></li>';
+        }
+
+        $links = $arrLinks;
+
+        foreach($links as $link)
+        {
+            if($link == $current)
+            {
+                $paginatorLinks .= '<li class="active"><a href="javascript:'.$paginatorJsName.'(\''.$link.'\')">'.$link.'</a></li>';
+            }
+            else
+            {
+                $paginatorLinks .= '<li><a href="javascript:'.$paginatorJsName.'(\''.$link.'\')">'.$link.'</a></li>';
+            }
+        }
+
+        $paginatorLinks .= '&nbsp;&nbsp;';
+
+        if($last)
+        {
+            $paginatorLinks .= '<li><a href="javascript:'.$paginatorJsName.'(\''.$last.'\')"><i class="fa fa-angle-right"></i></a>';
+        }
+
+        $paginatorLinks .= ' </ul></div>'; return $paginatorLinks;
     }
 
 }

@@ -14,6 +14,8 @@ class A_MARKET
 	var $domain = "";
 	var $tableName = "";
 	var $DBconection = "";
+    var $queryResult = ""; // resultado de un query
+    var $paginatorLinks = "";   //  lo que guarda las ligas que paginan
 	/* Constructor: User passes in the name of the script where
 	* form data is to be sent ($processor) and the value to show
 	* on the submit button.
@@ -201,6 +203,185 @@ INNER JOIN tsubastas AS C ON B.id = C.idProyecto';
         $disp = $disp1.$disp2;
 
         return $disp;
+    }
+
+
+    /***
+     * Obtiene los datos del inversionista
+     */
+    function search_marketPag($DBcon, $page, $noRowsDisplay)
+    {
+        require_once(C_P_CLASES.'utils/paginator.php');
+        $now = date("Y-m-d H:i:s");
+
+        //$query = 'SELECT * FROM tproyectos';
+        $query = 'SELECT
+A.id, A.gnombre, A.ranking, A.eval,
+B.id AS idp, B.idEmpresa, B.nombre, B.descripcionGeneral, B.video, B.pitchdocto,
+C.id AS ids, C.idProyecto, C.fechaInicio, C.fechaFin, C.tipo, C.estatus, B.logo
+FROM tempresas AS A
+INNER JOIN tproyectos AS B ON A.id = B.idEmpresa
+INNER JOIN tsubastas AS C ON B.id = C.idProyecto 
+WHERE (C.fechaInicio <= \''.$now.'\' AND C.fechaFin >= \''.$now.'\') AND C.estatus = 1';
+
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+        $total = $stmt->rowCount();
+
+        $num_rows = $total;
+
+        $a = new Paginator($page,$num_rows);
+
+
+        $a->set_Limit($noRowsDisplay);
+        $a->set_Links();
+        $limit1 = $a->getRange1();
+        $limit2 = $a->getRange2();
+        $query .= " LIMIT $limit1 , $limit2 ";
+
+        $stmt2 = $DBcon->prepare($query);
+        //$stmt2->execute();
+        //$total2 =  $stmt2->rowCount();
+
+        // guardo el resultado
+        $this->set_queryResult($stmt2);
+
+        //Paginador
+        if($a->getTotalPages()>1)
+        {
+            $paginatorLinks = $a->paintLinks('paginateMe',$a->getFirst(),$a->getLast(),$a->getLinkArr(),$a->getCurrent());
+            //guardo el string del paginador
+            $this->set_paginatorLinks($paginatorLinks);
+        }
+
+
+        return $query;
+    }
+
+    function disp_marketPage()
+    {
+        $stmt = $this->get_queryResult();
+        $stmt->execute();
+        $total = $stmt->rowCount();
+
+        $disp = '';
+        $disp1 = ''; //despliega el preview
+        $disp2 = ''; // despliega el detalle con video incrustado
+
+        $contLinea = 1;  //por cada 4 se reinicia para linea nueva
+        $cont = 0; // contador general
+        $endLinea = '</div>';
+        $starLinea1 = '<div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Market</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+          <ol class="breadcrumb">
+            <li><a href="desktop.php">Escritorio</a></li>
+            <!--li><a href="#">Ui Elements</a></li-->
+            <li class="active">'.$_SESSION["ses_tipo"].'</li>
+          </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>';
+
+        $starLinea = '<div class="row">';
+
+        //$disp1.=$starLinea;  //nuevo row
+        while ($row = $stmt->fetchObject()) {
+            if($contLinea == 1){
+                $disp1.=$starLinea;  //nuevo row
+            }
+
+
+
+            $disp1 .= '<div class="col-md-3 col-xs-12 col-sm-6"> <img class="img-responsive" alt="user" src="documents/'.$row->logo.'">
+                    <div class="white-box">
+                        <div class="text-muted"><span class="m-r-10">'.$row->fechaInicio.'</span> <a class="text-muted m-l-10" href="#"><i class="fa fa-heart-o"></i>'.$row->fechaFin.'</a></div>
+                        <h3 class="m-t-20 m-b-20">'.$row->nombre.'</h3>
+                        <p>'.substr($row->descripcionGeneral, 0, 30).'...</p>
+                        <button class="btn btn-success btn-rounded waves-effect waves-light m-t-20" data-toggle="modal" data-target="#exampleModal'.$cont.'" data-whatever="@mdo">Ver más</button>
+                      </div>
+                    </div>';
+
+            if($contLinea == 4 || $cont == $total-1) //reinicio contador de row
+            {
+                $contLinea = 0;
+                $disp1.=$endLinea;  //termino row
+            }
+
+            $disp2.='<div class="modal fade bs-example-modal-lg" id="exampleModal'.$cont.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel1">'.$row->nombre.'</h4>
+                          </div>
+                          <div class="modal-body">
+                            <iframe width="98%" height="315" src="https://www.youtube.com/embed/'.$row->video.'?list=RDEoaPhxNubL0?ecver=1" frameborder="0" allowfullscreen></iframe>
+                            <h4>'.$row->gnombre.'</h4>
+                            <p>'.$row->descripcionGeneral.'</p>
+                            <div class="demo-tooltip">
+                              <div class="tooltip top" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner"> '.$row->tipo.' </div>
+                              </div>
+                              <div class="tooltip top tooltip-primary" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner">Inicio: '.$row->fechaInicio.' </div>
+                              </div>
+                              <div class="tooltip top tooltip-success" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner"> Fin: '.$row->fechaFin.' </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <a class="btn btn-primary" href="documents/'.$row->pitchdocto.'" target="_blank">PITCH</a>
+                            <a  class="btn btn-primary" href="documentos.php?idProyecto='.$row->idp.'">Documentos</a>
+                            <a  class="btn btn-primary" href="invertir.php?idSubasta='.$row->ids.'">Invertir</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>';
+            $contLinea++;
+            $cont++;
+        }
+
+        $displinks.=$this->get_paginatorLinks();
+
+        $disp = $starLinea1.$disp1.$disp2.$displinks;
+
+       // $my_file = 'file.txt';
+       // $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+
+       // fwrite($handle, $disp);
+
+        return $disp;
+
+    }
+
+
+    function set_paginatorLinks($string)
+    {
+        $this->paginatorLinks = $string;
+    }
+
+    function get_paginatorLinks()
+    {
+        return $this->paginatorLinks;
+    }
+
+    function set_queryResult($query)
+    {
+        $this->queryResult = $query;
+    }
+
+    function get_queryResult()
+    {
+        return $this->queryResult;
     }
 
 }

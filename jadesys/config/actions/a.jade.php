@@ -6,7 +6,7 @@
  * Date: 19/07/17
  * Time: 18:37
  */
-class A_PROY
+class A_JADE
 {
     var $data = array(); # contains field data
     var $dataNames = ""; # contains field names
@@ -159,10 +159,6 @@ class A_PROY
         $query = "SELECT A.*, B.gnombre FROM " . $this->tableName ." AS A 
         INNER JOIN tempresas AS B ON A.idEmpresa = B.id";
         $where = "";
-        if ($idEmpresa != "")
-        {
-            $where = " WHERE A." . $this->arrDataNames['data1'] . " = '" . $idEmpresa . "'";
-        }
 
         $query.= $where;
 
@@ -300,7 +296,15 @@ class A_PROY
     {
         $obj = $this->get_queryResult();
 
-        $otherActions = '';
+            $otherActions = '<button type="button" class="btn btn-info btn-circle" onclick="setStatus(\''.$obj->id.'\',2)"><i class="fa fa-check"></i> </button>
+            <button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times" onclick="setStatus(\''.$obj->id.'\',3)"></i> </button>';
+
+        $subasta= '';
+        // boton para crear subasta de un proyecto, si esta aprobado (2) entonces muestra boton
+        if($obj->status == 2)
+        {
+           $subasta= '<a href="step_subastas.php?idProyecto='.$obj->id.'" target="_self" class="btn btn-default">Crear Subasta</button>';
+        }
 
         $disp= '<div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -332,7 +336,7 @@ class A_PROY
               </form>
             </div>
             <div class="modal-footer">
-              '.$otherActions.'
+              '.$otherActions.$subasta.'.
               <a href="documentos.php?idProyecto='.$obj->id.'" target="_self" class="btn btn-default">Ver Doctos</button>
               <a href="gallery.php?idProyecto='.$obj->id.'" target="_self" class="btn btn-default">Ver Fotos</button>
             </div>';

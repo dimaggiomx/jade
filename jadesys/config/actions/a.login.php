@@ -98,6 +98,22 @@ class A_LOG_IN
         return $obj;
     }
 
+    /***
+     * Obtains a user general data
+     */
+    function user_permisos($DBcon, $idUsuario)
+    {
+        require_once(C_P_CLASES.'utils/string.functions.php');
+        $STR = new STRFN();
+
+
+        $query= "SELECT * FROM permisos_usr WHERE idusuario = '".$idUsuario."'";
+        $stmt = $DBcon->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
 
     /***
      * Verifies a users first time loggin
@@ -110,29 +126,40 @@ class A_LOG_IN
 
         $tabla = '';
 
-        if($privilege == 'C') // es empresa
+        if($privilege == 'D' || $privilege == 'E') // es Jade user o admin
         {
-            $tabla = 'tempresas';
-        }
-        else{                // es inversionista
-            $tabla = 'tinversionistas';
-        }
-
-        $query = "SELECT id FROM ".$tabla." WHERE iduser = '".$iduser."'";
-
-        $stmt = $DBcon->prepare($query);
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 1) {
             $response['status'] = 'success'; // ya ha registrado datos extra
             $response['URL'] = $this->domain.'desktop.php';
             $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, puede continuar');
             $response['other'] = 1;
-        } else {
-            $response['status'] = 'success'; // no ha registrado datos extra
-            $response['URL'] =  $this->domain.'step2_'.$tabla.'.php';
-            $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, por favor complete su registro');
-            $response['other'] = 0;
+        }else{
+
+            if($privilege == 'C') // es empresa
+            {
+                $tabla = 'tempresas';
+            }
+
+            if($privilege == 'B') // es empresa
+            {               // es inversionista
+                $tabla = 'tinversionistas';
+            }
+
+            $query = "SELECT id FROM ".$tabla." WHERE iduser = '".$iduser."'";
+
+            $stmt = $DBcon->prepare($query);
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 1) {
+                $response['status'] = 'success'; // ya ha registrado datos extra
+                $response['URL'] = $this->domain.'desktop.php';
+                $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, puede continuar');
+                $response['other'] = 1;
+            } else {
+                $response['status'] = 'success'; // no ha registrado datos extra
+                $response['URL'] =  $this->domain.'step2_'.$tabla.'.php';
+                $response['message'] = $STR->setMsgStyle('&nbsp; Bienvenido, por favor complete su registro');
+                $response['other'] = 0;
+            }
         }
 
         return $response;

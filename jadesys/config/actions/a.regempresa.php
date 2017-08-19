@@ -37,7 +37,7 @@ class A_REG_EMP
 	 *
 	 */
     function add_data($dato1,$dato2,$dato3,$dato4,$dato5, $dato6, $dato7, $dato8, $dato9, $dato10,
-                      $dato11,$dato12,$dato13,$dato14,$dato15, $dato16, $dato17)
+                      $dato11,$dato12,$dato13,$dato14,$dato15, $dato16, $dato17, $dato32)
     {
         $this->data['data1'] = $dato1; //iduser
         $this->data['data2'] = $dato2; //gnombre
@@ -57,6 +57,8 @@ class A_REG_EMP
         $this->data['data16'] = $dato16; //ofechaconstitucion
 
         $this->data['data17'] = $dato17; //regdate
+
+        $this->data['data32'] = $dato32; //regdate
     }
 
 
@@ -107,8 +109,8 @@ class A_REG_EMP
 		            ," . $this->arrDataNames['data9'] . "," . $this->arrDataNames['data10'] . "
 		            ," . $this->arrDataNames['data11'] . "," . $this->arrDataNames['data12'] . "
                     ," . $this->arrDataNames['data13'] . "," . $this->arrDataNames['data14'] . "
-                    ," . $this->arrDataNames['data15'] . "," . $this->arrDataNames['data16'] . "
-                    ," . $this->arrDataNames['data17'] . "
+                    ," . $this->arrDataNames['data15'] . "
+                    ," . $this->arrDataNames['data17'] . "," . $this->arrDataNames['data32'] . "
 		            )
 		        VALUES
                     ('" . $this->data['data1'] . "','" . $this->data['data2'] . "'
@@ -118,8 +120,8 @@ class A_REG_EMP
 		            ,'" . $this->data['data9'] . "','" . $this->data['data10'] . "'
 		            ,'" . $this->data['data11'] . "','" . $this->data['data12'] . "'
                     ,'" . $this->data['data13'] . "','" . $this->data['data14'] . "'
-                    ,'" . $this->data['data15'] . "','" . $this->data['data16'] . "'
-                    ,'" . $now . "'
+                    ,'" . $this->data['data15'] . "'
+                    ,'" . $now . "','" . $this->data['data32'] . "'
                     );";
 
         $stmt = $DBcon->prepare($query);
@@ -129,6 +131,21 @@ class A_REG_EMP
             $response['status'] = 'success';
             $response['message'] = $STR->setMsgStyle('&nbsp; Registro exitoso, Gracias!');
             $response['URL'] = $this->domain.'desktop.php';
+
+            // registro msg de nueva empresa y msg de crea tu nuevo proyecto (idmsg = 2)
+            // para datos generales
+            require_once(C_P_CLASES."actions/a.msg.php");
+            $myData = NEW A_MSG("");
+            $myData->add_data($this->data['data1'],2,$now,'first_project.php',1,'');
+            $resp2 = $myData->ins_msg($DBcon);
+
+            $response['message'] = $resp2['message'];
+
+            // idmsg = 7 es para nueva empresa registrada
+            $myData->add_data(0,7,$now,'#',1,''); //el idusuario = 0 es para que TODOS vean el msg.
+            $resp2 = $myData->ins_msg($DBcon);
+
+
         } else {
             $response['status'] = 'error'; // could not register
             $response['message'] = $STR->setMsgStyle('&nbsp; No se pudo registrar, intente nuevamente más tarde', 3);

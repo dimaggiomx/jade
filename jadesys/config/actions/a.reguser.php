@@ -73,9 +73,16 @@ class A_REG_USER
 
         // check for successfull registration
         if ( $stmt->execute() ) {
+
+            //establecer permisos
+            $userId = $DBcon->lastInsertId();
+            $respuesta = $this->ins_permisos($DBcon,$userId,$this->data['data3']);
+
             $response['status'] = 'success';
             $response['message'] = $STR->setMsgStyle('&nbsp; Registro exitoso, Gracias!');
             $response['guid'] = $guid;
+
+
             //if($ambiente == 'PRO')
             //{
             $this->send_regMail('info@jadecapitalflow.com',$this->data['data1'],$guid);
@@ -208,6 +215,130 @@ class A_REG_USER
         {
             $res = 'OK';
         }
+    }
+
+    // inserta los permisos por perfil
+    function ins_permisos($DBcon, $idusuario, $tipousuario)
+    {
+
+        $query = $this->set_profile($tipousuario,$idusuario);
+
+        $stmt = $DBcon->prepare($query);
+
+        // check for successfull registration
+        if ( $stmt->execute() ) {
+            $response['status'] = 'success';
+            $response['message'] = '&nbsp; Registro exitoso, Gracias!';
+
+        } else {
+            $response['status'] = 'error'; // could not register
+            $response['message'] = '&nbsp; No se pudo registrar, intente nuevamente más tarde';
+        }
+
+        return $response;
+    }
+
+    function set_profile($tipo, $idusuario)
+    {
+        //tipo: B=inversionista ,C=empresa, D=admin, E=jade
+        $query = '';
+        if($tipo == 'B')
+        {
+            $query = 'INSERT INTO permisos_usr (idpermiso, idusuario, cpermis) VALUES
+            (1, '.$idusuario.', 1),
+            (2, '.$idusuario.', 1),
+            (3, '.$idusuario.', 1),
+            (4, '.$idusuario.', 1),
+            (5, '.$idusuario.', 1),
+            (6, '.$idusuario.', 1),
+            (7, '.$idusuario.', 0),
+            (8, '.$idusuario.', 0),
+            (9, '.$idusuario.', 1),
+            (10, '.$idusuario.', 0),
+            (11, '.$idusuario.', 0),
+            (12, '.$idusuario.', 0),
+            (13, '.$idusuario.', 1),
+            (14, '.$idusuario.', 1),
+            (15, '.$idusuario.', 0),
+            (16, '.$idusuario.', 1),
+            (17, '.$idusuario.', 0),
+            (18, '.$idusuario.', 0),
+            (19, '.$idusuario.', 0),
+            (20, '.$idusuario.', 0),
+            (21, '.$idusuario.', 0),
+            (22, '.$idusuario.', 0),
+            (23, '.$idusuario.', 0),
+            (24, '.$idusuario.', 1),
+            (25, '.$idusuario.', 0),
+            (26, '.$idusuario.', 0),
+            (27, '.$idusuario.', 0);';
+        }
+
+        if($tipo == 'C')
+        {
+            $query = 'INSERT INTO permisos_usr (idpermiso, idusuario, cpermis) VALUES
+            (1, '.$idusuario.', 1),
+            (2, '.$idusuario.', 1),
+            (3, '.$idusuario.', 1),
+            (4, '.$idusuario.', 1),
+            (5, '.$idusuario.', 1),
+            (6, '.$idusuario.', 0),
+            (7, '.$idusuario.', 1),
+            (8, '.$idusuario.', 1),
+            (9, '.$idusuario.', 1),
+            (10, '.$idusuario.', 1),
+            (11, '.$idusuario.', 0),
+            (12, '.$idusuario.', 1),
+            (13, '.$idusuario.', 0),
+            (14, '.$idusuario.', 0),
+            (15, '.$idusuario.', 1),
+            (16, '.$idusuario.', 1),
+            (17, '.$idusuario.', 1),
+            (18, '.$idusuario.', 1),
+            (19, '.$idusuario.', 0),
+            (20, '.$idusuario.', 0),
+            (21, '.$idusuario.', 0),
+            (22, '.$idusuario.', 0),
+            (23, '.$idusuario.', 0),
+            (24, '.$idusuario.', 0),
+            (25, '.$idusuario.', 1),
+            (26, '.$idusuario.', 0),
+            (27, '.$idusuario.', 0);';
+        }
+
+        if($tipo == 'E')
+        {
+            $query = 'INSERT INTO permisos_usr (idpermiso, idusuario, cpermis) VALUES
+            (1, '.$idusuario.', 1),
+            (2, '.$idusuario.', 1),
+            (3, '.$idusuario.', 1),
+            (4, '.$idusuario.', 1),
+            (5, '.$idusuario.', 1),
+            (6, '.$idusuario.', 1),
+            (7, '.$idusuario.', 1),
+            (8, '.$idusuario.', 0),
+            (9, '.$idusuario.', 1),
+            (10, '.$idusuario.', 1),
+            (11, '.$idusuario.', 1),
+            (12, '.$idusuario.', 1),
+            (13, '.$idusuario.', 0),
+            (14, '.$idusuario.', 0),
+            (15, '.$idusuario.', 0),
+            (16, '.$idusuario.', 1),
+            (17, '.$idusuario.', 1),
+            (18, '.$idusuario.', 1),
+            (19, '.$idusuario.', 1),
+            (20, '.$idusuario.', 1),
+            (21, '.$idusuario.', 1),
+            (22, '.$idusuario.', 1),
+            (23, '.$idusuario.', 1),
+            (24, '.$idusuario.', 0),
+            (25, '.$idusuario.', 0),
+            (26, '.$idusuario.', 0),
+            (27, '.$idusuario.', 0);';
+        }
+
+        return $query;
     }
 
 }
