@@ -22,6 +22,7 @@ session_start();
         $var9 = trim($_POST['otelofc']);
         $var10 = trim($_POST['ogiro']);
         $var11 = $_POST['orubrosinteres'];
+        $var12 = trim($_POST['cuenta']);
 
 
         $t_var1 = strip_tags($var1);
@@ -34,27 +35,20 @@ session_start();
         $t_var8 = strip_tags($var8);
         $t_var9 = strip_tags($var9);
         $t_var10 = strip_tags($var10);
-        //$t_var11 = strip_tags($var11);
-
-        /*
-        $tmp = '';
-
-        for ($i=0;$i<count($var11);$i++)
-        {
-            $tmp .= " =) " . $i . ": " . $var11[$i];
-        }
-        */
+        $t_var12 = strip_tags($var12);
 
 
         require_once(C_P_CLASES.'actions/a.reginversionista.php');
             $myReg = new A_REG_INV("");
-            $myReg->add_data($t_var1,$t_var2,$t_var3,$t_var4,$t_var5,$t_var6,$t_var7,$t_var8,$t_var9,$t_var10,$var11,"");
+            $myReg->add_data($t_var1,$t_var2,$t_var3,$t_var4,$t_var5,$t_var6,$t_var7,$t_var8,$t_var9,$t_var10,$var11,"",$t_var12);
             $response = $myReg->ins_datos($DBcon);
+
+
 
     }
 
     //$response['status'] = 'error'; // could not register
-    //$response['message'] = '&nbsp; '.$tmp;
+    //$response['message'] = '&nbsp; '.$t_var12;
 
 	echo json_encode($response);
 ?>

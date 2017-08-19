@@ -27,6 +27,7 @@ session_start();
         $var14 = trim($_POST['oprodcomercializacion']);
         $var15 = trim($_POST['oactividades']);
         $var16 = trim($_POST['ofechaconstitucion']);
+        $var32 = trim($_POST['cuenta']);  // se agrega el dato de numero de cuenta de banco
 
         $t_var1 = strip_tags($var1);
         $t_var2 = strip_tags($var2);
@@ -45,10 +46,12 @@ session_start();
         $t_var15 = strip_tags($var15);
         $t_var16 = strip_tags($var16);
 
+        $t_var32 = strip_tags($var32);
+
 
             require_once(C_P_CLASES.'actions/a.regempresa.php');
             $myReg = new A_REG_EMP("");
-            $myReg->add_data($t_var1,$t_var2,$t_var3,$t_var4,$t_var5,$t_var6,$t_var7,$t_var8,$t_var9,$t_var10,$t_var11,$t_var12,$t_var13,$t_var14,$t_var15,$t_var16,"");
+            $myReg->add_data($t_var1,$t_var2,$t_var3,$t_var4,$t_var5,$t_var6,$t_var7,$t_var8,$t_var9,$t_var10,$t_var11,$t_var12,$t_var13,$t_var14,$t_var15,$t_var16,"",$t_var32);
             $response = $myReg->ins_datosGenerales($DBcon);
 
     }
